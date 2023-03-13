@@ -17,4 +17,5 @@ public class Cadre extends Impression{
 
     @ManyToMany
     private Set<Photo> photos = new HashSet<Photo>();
+
 }
