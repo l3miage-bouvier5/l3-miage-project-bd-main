@@ -18,7 +18,7 @@ public class Album extends Impression{
     @OneToMany
     private List<Page> pages = new ArrayList<Page>();
 
-    public Photo getTitreCouverture() {
+    public String getTitreCouverture() {
         return this.titreCouverture;
     }
 
