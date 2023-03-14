@@ -21,7 +21,7 @@ public abstract class Impression {
     private Date date;
 
     @ManyToOne
-    private Client proprietaire;
+    private Client proprietaireImpression;
 
     @OneToMany
     private List<Article> articles = new ArrayList<Article>();
