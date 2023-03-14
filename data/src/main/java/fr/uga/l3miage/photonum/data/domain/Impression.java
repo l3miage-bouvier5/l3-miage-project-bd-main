@@ -2,8 +2,13 @@ package fr.uga.l3miage.photonum.data.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -31,6 +36,8 @@ public abstract class Impression {
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
+    @ManyToOne
+    private Client proprietaireImpression;
 
     public Date getDate() {
         return date;
