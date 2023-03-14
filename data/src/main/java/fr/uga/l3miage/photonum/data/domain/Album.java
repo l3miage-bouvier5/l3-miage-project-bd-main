@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Album extends Impression{
     
     @Column( name = "titreCouverture")
     private String titreCouverture;
 
-    @OneToOne
+    @ManyToOne
     private Photo couverture;
 
-    @OneToMany
+    @ManyToMany(mappedBy="albums")
     private List<Page> pages = new ArrayList<Page>();
 
     public String getTitreCouverture() {
@@ -36,6 +38,31 @@ public class Album extends Impression{
 
     public List<Page> getPages() {
         // TODO
-        return null;
+        return this.pages;
+    }
+
+    
+    public Photo getCouverture() {
+        return couverture;
+    }
+    
+    public void setCouverture(Photo couverture) {
+        this.couverture = couverture;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
+    
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Album)){
+            return false;
+        }
+        Album otherAlbum = (Album) other;
+    
+        return otherAlbum.getPages().equals(this.pages)
+        && otherAlbum.getTitreCouverture().equals(this.titreCouverture)
+        && otherAlbum.getCouverture().equals(this.couverture);
     }
 }

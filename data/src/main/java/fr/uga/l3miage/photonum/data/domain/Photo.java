@@ -26,7 +26,7 @@ public class Photo {
     @ManyToOne
     private Page page;
 
-    @OneToMany
+    @OneToMany(mappedBy = "couverture")
     private List<Album> albums;
 
     @ManyToMany

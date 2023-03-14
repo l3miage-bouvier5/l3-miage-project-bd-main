@@ -32,6 +32,16 @@ public class Adresse {
     @ManyToMany(mappedBy = "adressesPostales")
     List<Client> clients;
 
+    @OneToMany(mappedBy = "adresseLivraison")
+    List<Commande> commandes;
+
+    public List<Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(List<Commande> commandes) {
+        this.commandes = commandes;
+    }
 
     public int getCodePostal() {
         return codePostal;
@@ -76,5 +86,14 @@ public class Adresse {
         return clients;
     }
 
-
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Adresse)){
+            return false;
+        }
+        Adresse otherAdresse = (Adresse) other;
+        return otherAdresse.getNomRue().equals(this.nomRue)
+        && otherAdresse.getNumDePorte() == this.numDePorte 
+        && otherAdresse.getVille().equals(this.ville);
+    }
 }

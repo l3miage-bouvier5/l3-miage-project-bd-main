@@ -15,11 +15,14 @@ public class Client {
     @GeneratedValue
     private Long id;
 
+
     @Column(name = "adrMail")
     private String adrMail;
 
+
     @Column(name = "nom")
     private String nom;
+
 
     @Column(name = "prenoms")
     private String prenoms;
@@ -31,6 +34,36 @@ public class Client {
 
     @ManyToMany
     List<Adresse> adressesPostales;
+
+
+    @OneToMany(mappedBy = "client")
+    private Commande commande;
+
+
+    @OneToMany(mappedBy = "proprietaireImage")
+    private List<Image> images;
+
+    @OneToMany(mappedBy = "proprietaireImpression")
+    private List<Impression> impressions;
+
+    public List<Impression> getImpressions() {
+        return impressions;
+    }
+
+
+    public void setImpressions(List<Impression> impressions) {
+        this.impressions = impressions;
+    }
+
+
+    public Commande getCommande() {
+        return commande;
+    }
+
+
+    public void setCommande(Commande commande) {
+        this.commande = commande;
+    }
 
 
     public Long getId() {
@@ -87,5 +120,18 @@ public class Client {
 
     public void setAdressesPostales(List<Adresse> adressesPostales) {
         this.adressesPostales = adressesPostales;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Client)){
+            return false;
+        }
+
+        Client otherClient = (Client) other;
+
+        return otherClient.getNom().equals(this.nom) 
+        && otherClient.getPrenoms().equals(this.prenoms)
+        && otherClient.getAdressesPostales().equals(this.adressesPostales); 
     }
 }
