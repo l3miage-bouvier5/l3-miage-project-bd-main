@@ -2,8 +2,10 @@ package fr.uga.l3miage.photonum.data.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,6 +19,12 @@ public abstract class Impression {
 
     @Temporal(TemporalType.DATE)
     private Date date;
+
+    @ManyToOne
+    private Client proprietaire;
+
+    @OneToMany
+    private List<Article> articles = new ArrayList<Article>();
 
     public Date getDate() {
         return date;
