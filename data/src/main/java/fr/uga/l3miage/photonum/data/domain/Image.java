@@ -85,5 +85,16 @@ public class Image {
 
     // hashcode and equals?
 
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Image)){
+            return false;
+        }
+
+        Image otherImage = (Image) other;
+
+        return otherImage.getCheminAcces().equals(this.cheminAcces);
+    }
+
     
 }

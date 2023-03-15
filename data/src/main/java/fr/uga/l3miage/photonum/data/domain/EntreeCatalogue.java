@@ -24,4 +24,48 @@ public class EntreeCatalogue {
     // (UML) Relation ContientEntrees
     @ManyToOne
     private Catalogue catalogue;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRef() {
+        return ref;
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+    public Catalogue getCatalogue() {
+        return catalogue;
+    }
+
+    public void setCatalogue(Catalogue catalogue) {
+        this.catalogue = catalogue;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof EntreeCatalogue)){
+            return false;
+        }
+
+        EntreeCatalogue otherEntreeCatalogue = (EntreeCatalogue) other;
+        
+        return otherEntreeCatalogue.getRef().equals(this.ref)
+        && otherEntreeCatalogue.getCatalogue().equals(this.catalogue);
+    }
 }

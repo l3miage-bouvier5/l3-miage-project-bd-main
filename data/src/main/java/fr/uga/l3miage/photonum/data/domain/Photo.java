@@ -98,4 +98,16 @@ public class Photo {
 
     // add cadres, add albums, add tirage?
     // equals, hash code
+
+
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Photo)){
+            return false;
+        }
+
+        Photo otherPhoto = (Photo) other;
+        return otherPhoto.getImage().equals(this.image)
+        && otherPhoto.getParamRetoucheImg().equals(this.paramRetoucheImg);
+    }
 }

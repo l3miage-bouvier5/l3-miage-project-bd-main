@@ -97,5 +97,15 @@ public class Commande {
         this.adresseLivraison = adresseLivraison;
     }
 
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Commande)){
+            return false;
+        }
+        Commande otherCommande = (Commande) other;
+        return otherCommande.getArticles().equals(this.articles)
+        && otherCommande.getClient().equals(this.client)
+        && otherCommande.getDate().equals(this.date);
+    }
 
 }

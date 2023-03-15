@@ -20,4 +20,16 @@ public class Tirage extends Impression{
     public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if(!(other instanceof Tirage)){
+            return false;
+        }
+
+        Tirage otherTirage = (Tirage) other;
+        return otherTirage.getPhotos().equals(this.photos);
+    }
+
+    
 }
