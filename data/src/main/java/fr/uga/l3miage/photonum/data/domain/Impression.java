@@ -19,7 +19,7 @@ public abstract class Impression {
 
 
     @ManyToOne
-    private Client client;
+    private Client proprietaireImpression;
 
 
     @OneToMany(mappedBy = "impression")
@@ -32,8 +32,6 @@ public abstract class Impression {
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
-    @ManyToOne
-    private Client proprietaireImpression;
 
     public Date getDate() {
         return date;
