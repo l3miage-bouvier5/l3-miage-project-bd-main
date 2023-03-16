@@ -7,20 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
-enum Qualite{ //A COMPLETER ...?
-    MAT,
-    BRILLANT
-}
-
-enum Format{ //A COMPLETER
-    A1,
-    A2,
-    A3,
-    A4,
-    A5
-}
-
-
 @Entity
 public class Article {
 
@@ -37,7 +23,7 @@ public class Article {
     private float prix;
 
     @Column(name="qualiteArticle")
-    private Qualite qualite;
+    private QualiteArticle qualite;
 
     @Column(name="formatArticle")
     private Format format;
