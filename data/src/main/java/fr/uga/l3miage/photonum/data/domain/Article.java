@@ -23,7 +23,7 @@ public class Article {
     private float prix;
 
     @Column(name="qualiteArticle")
-    private QualiteArticle qualite;
+    private Qualite qualite;
 
     @Column(name="formatArticle")
     private Format format;
