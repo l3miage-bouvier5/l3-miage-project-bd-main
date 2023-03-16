@@ -7,12 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
-enum Qualite{ //A COMPLETER ...?
+public enum Qualite{ //A COMPLETER ...?
     MAT,
     BRILLANT
 }
 
-enum Format{ //A COMPLETER
+public enum Format{ //A COMPLETER
     A1,
     A2,
     A3,
