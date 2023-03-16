@@ -3,10 +3,10 @@ package fr.uga.l3miage.photonum.data.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-import fr.uga.l3miage.photonum.data.repo.ImpressionRepository;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+
 
 
 
@@ -62,7 +62,7 @@ public class Cadre extends Impression{
 
     @Override
     public boolean equals(Object other) {
-        if(!(other instanceof Cadre)){
+        if(!(other instanceof Cadre) || other == null){
             return false;
         }
         Cadre otherCadre = (Cadre) other;

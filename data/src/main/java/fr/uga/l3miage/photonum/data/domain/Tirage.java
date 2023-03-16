@@ -23,7 +23,7 @@ public class Tirage extends Impression{
 
     @Override
     public boolean equals(Object other) {
-        if(!(other instanceof Tirage)){
+        if(!(other instanceof Tirage) || other == null){
             return false;
         }
 

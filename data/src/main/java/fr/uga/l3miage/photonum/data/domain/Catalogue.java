@@ -21,7 +21,7 @@ public class Catalogue {
     }
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Catalogue)){
+        if(!(other instanceof Catalogue) || other == null){
             return false;
         }
 

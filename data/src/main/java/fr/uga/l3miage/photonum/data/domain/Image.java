@@ -87,7 +87,7 @@ public class Image {
 
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Image)){
+        if(!(other instanceof Image) || other == null){
             return false;
         }
 

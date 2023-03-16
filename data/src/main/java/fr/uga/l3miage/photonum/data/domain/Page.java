@@ -53,7 +53,7 @@ public class Page {
 
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Page)){
+        if(!(other instanceof Page) || other == null){
             return false;
         }
         Page otherPage = (Page) other;

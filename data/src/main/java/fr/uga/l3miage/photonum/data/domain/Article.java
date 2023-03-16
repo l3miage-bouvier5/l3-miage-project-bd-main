@@ -135,7 +135,7 @@ public class Article {
 
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Article)){
+        if(!(other instanceof Article) || other == null){
             return false;
         }
         Article otherArticle = (Article) other;
