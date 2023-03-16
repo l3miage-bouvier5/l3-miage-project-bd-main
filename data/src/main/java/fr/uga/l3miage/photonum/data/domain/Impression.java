@@ -17,6 +17,11 @@ public abstract class Impression {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+
+    @ManyToOne
+    private Client proprietaireImpression;
+
+
     @OneToMany(mappedBy = "impression")
     private List<Article> articles;
 
