@@ -11,12 +11,16 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "info_prise_de_vue")
     private String infoPriseDeVue;
 
+    @Column(name = "chemin_acces")
     private String cheminAcces;
-    
+
+    @Column(name = "resolution")
     private Long resolution;
 
+    @Column(name = "est_partage")
     private Boolean estPartage;
 
     @ManyToOne
