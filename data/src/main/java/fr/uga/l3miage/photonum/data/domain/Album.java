@@ -1,6 +1,5 @@
 package fr.uga.l3miage.photonum.data.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -18,7 +17,7 @@ public class Album extends Impression{
     private Photo couverture;
 
     @ManyToMany(mappedBy="albums")
-    private List<Page> pages = new ArrayList<Page>();
+    private List<Page> pages;
 
     public String getTitreCouverture() {
         return this.titreCouverture;
@@ -56,7 +55,7 @@ public class Album extends Impression{
     
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Album)){
+        if(!(other instanceof Album) || other == null){
             return false;
         }
         Album otherAlbum = (Album) other;

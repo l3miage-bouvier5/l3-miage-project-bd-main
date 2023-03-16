@@ -39,7 +39,7 @@ public class Calendrier extends Impression{
     }
     @Override
     public boolean equals(Object other) {
-        if(!(other instanceof Calendrier)){
+        if(!(other instanceof Calendrier) || other == null){
             return false;
         }
 

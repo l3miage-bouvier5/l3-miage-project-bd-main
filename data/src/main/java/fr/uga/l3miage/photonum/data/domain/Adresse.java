@@ -88,7 +88,7 @@ public class Adresse {
 
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Adresse)){
+        if(!(other instanceof Adresse) || other == null){
             return false;
         }
         Adresse otherAdresse = (Adresse) other;
