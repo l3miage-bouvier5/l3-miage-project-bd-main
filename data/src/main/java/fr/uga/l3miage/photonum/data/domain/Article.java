@@ -50,7 +50,7 @@ public class Article {
     private Catalogue catalogue;
 
     // (UML) Relation ContientArticles
-    @ManyToMany
+    @ManyToOne
     private Commande commande;
     
 
