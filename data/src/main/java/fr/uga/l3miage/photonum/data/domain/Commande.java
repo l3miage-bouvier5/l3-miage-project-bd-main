@@ -99,7 +99,7 @@ public class Commande {
 
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Commande)){
+        if(!(other instanceof Commande) || other == null){
             return false;
         }
         Commande otherCommande = (Commande) other;

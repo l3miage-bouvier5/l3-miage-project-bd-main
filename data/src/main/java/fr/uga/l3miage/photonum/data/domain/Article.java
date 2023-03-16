@@ -1,25 +1,13 @@
 package fr.uga.l3miage.photonum.data.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-
-enum Qualite{ //A COMPLETER ...?
-    MAT,
-    BRILLANT
-}
-
-enum Format{ //A COMPLETER
-    A1,
-    A2,
-    A3,
-    A4,
-    A5
-}
-
 
 @Entity
 public class Article {
@@ -50,8 +38,8 @@ public class Article {
     private Catalogue catalogue;
 
     // (UML) Relation ContientArticles
-    @ManyToOne
-    private Commande commande;
+    @ManyToMany
+    private List<Commande> commandes;
     
 
     @ManyToOne
@@ -138,18 +126,18 @@ public class Article {
     }
 
 
-    public Commande getCommande() {
-        return commande;
+    public List<Commande> getCommande() {
+        return commandes;
     }
 
 
-    public void setCommande(Commande commande) {
-        this.commande = commande;
+    public void setCommande(List<Commande> commandes) {
+        this.commandes = commandes;
     }
 
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof Article)){
+        if(!(other instanceof Article) || other == null){
             return false;
         }
         Article otherArticle = (Article) other;

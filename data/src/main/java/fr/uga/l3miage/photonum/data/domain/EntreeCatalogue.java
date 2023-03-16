@@ -59,7 +59,7 @@ public class EntreeCatalogue {
 
     @Override
     public boolean equals(Object other){
-        if(!(other instanceof EntreeCatalogue)){
+        if(!(other instanceof EntreeCatalogue) || other == null){
             return false;
         }
 
