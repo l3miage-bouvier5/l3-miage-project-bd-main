@@ -1,5 +1,7 @@
 package fr.uga.l3miage.photonum.data.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +39,7 @@ public class Article {
 
     // (UML) Relation ContientArticles
     @ManyToMany
-    private Commande commande;
+    private List<Commande> commandes;
     
 
     @ManyToOne
@@ -124,13 +126,13 @@ public class Article {
     }
 
 
-    public Commande getCommande() {
-        return commande;
+    public List<Commande> getCommande() {
+        return commandes;
     }
 
 
-    public void setCommande(Commande commande) {
-        this.commande = commande;
+    public void setCommande(List<Commande> commandes) {
+        this.commandes = commandes;
     }
 
     @Override
