@@ -25,8 +25,6 @@ public abstract class Impression {
     @OneToMany(mappedBy = "impression")
     private List<Article> articles;
 
-    @ManyToOne
-    private Client proprietaireImpression;
 
     public List<Article> getArticles() {
         return articles;
