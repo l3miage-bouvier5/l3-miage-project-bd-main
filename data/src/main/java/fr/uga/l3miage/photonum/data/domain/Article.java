@@ -7,19 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
-enum QualiteArticle{ //A COMPLETER ...?
+enum QualiteArticle{
     MAT,
     BRILLANT
-}
-
-enum FormatArticle{ //A COMPLETER
-    A0,
-    A1,
-    A2,
-    A3,
-    A4,
-    A5,
-    A6
 }
 
 
