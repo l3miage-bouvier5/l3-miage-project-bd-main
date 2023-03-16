@@ -9,8 +9,7 @@ import jakarta.persistence.ManyToOne;
 
 enum Qualite{ //A COMPLETER ...?
     MAT,
-    BRILLANT,
-    CHROME
+    BRILLANT
 }
 
 enum Format{ //A COMPLETER
