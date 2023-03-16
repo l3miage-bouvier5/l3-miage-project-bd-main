@@ -1,45 +1,36 @@
 package fr.uga.l3miage.photonum.data.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
-enum Qualite{ //A COMPLETER ...?
-    MAT,
-    BRILLANT
-}
-
-enum Format{ //A COMPLETER
-    A1,
-    A2,
-    A3,
-    A4,
-    A5
-}
-
+@Entity
 public class Article {
 
     @Id
     @GeneratedValue
-    @Column(name="artId")
+    @Column(name="id")
     private Long id;
 
     @GeneratedValue
-    @Column(name="refArticle")
+    @Column(name="ref")
     private String ref;
 
-    @Column(name="prixArticle")
+    @Column(name="prix")
     private float prix;
 
-    @Column(name="qualiteArticle")
+    @Column(name="qualite")
     private Qualite qualite;
 
-    @Column(name="formatArticle")
+    @Column(name="format")
     private Format format;
 
-    @Column(name="quantiteCmd")
+    @Column(name="quantite")
     private int quantite;
 
     // (UML) Relation AppartientA
@@ -48,6 +39,111 @@ public class Article {
 
     // (UML) Relation ContientArticles
     @ManyToMany
-    private Commande commande;
+    private List<Commande> commandes;
     
+
+    @ManyToOne
+    private Impression impression;
+
+
+    public Impression getImpression() {
+        return impression;
+    }
+
+
+    public void setImpression(Impression impression) {
+        this.impression = impression;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getRef() {
+        return ref;
+    }
+
+
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+
+    public float getPrix() {
+        return prix;
+    }
+
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+
+    public Qualite getQualite() {
+        return qualite;
+    }
+
+
+    public void setQualite(Qualite qualite) {
+        this.qualite = qualite;
+    }
+
+
+    public Format getFormat() {
+        return format;
+    }
+
+
+    public void setFormat(Format format) {
+        this.format = format;
+    }
+
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+
+    public Catalogue getCatalogue() {
+        return catalogue;
+    }
+
+
+    public void setCatalogue(Catalogue catalogue) {
+        this.catalogue = catalogue;
+    }
+
+
+    public List<Commande> getCommande() {
+        return commandes;
+    }
+
+
+    public void setCommande(List<Commande> commandes) {
+        this.commandes = commandes;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Article) || other == null){
+            return false;
+        }
+        Article otherArticle = (Article) other;
+
+        return otherArticle.getImpression().equals(this.impression)
+        && otherArticle.getFormat().equals(this.format)
+        && otherArticle.qualite.equals(this.qualite);
+    }
 }

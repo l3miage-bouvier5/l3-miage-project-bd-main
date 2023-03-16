@@ -2,15 +2,12 @@ package fr.uga.l3miage.photonum.data.domain;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Impression {
 
     @Id
@@ -20,11 +17,22 @@ public abstract class Impression {
     @Temporal(TemporalType.DATE)
     private Date date;
 
+
     @ManyToOne
     private Client proprietaireImpression;
 
-    @OneToMany
-    private List<Article> articles = new ArrayList<Article>();
+
+    @OneToMany(mappedBy = "impression")
+    private List<Article> articles;
+
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
 
     public Date getDate() {
         return date;
@@ -37,4 +45,16 @@ public abstract class Impression {
     public Long getId() {
         return id;
     }
+
+    public Client getProprietaireImpression() {
+        return proprietaireImpression;
+    }
+
+    public void setProprietaireImpression(Client proprietaireImpression) {
+        this.proprietaireImpression = proprietaireImpression;
+    }
+
+    @Override
+    public abstract boolean equals(Object other);
+
 }

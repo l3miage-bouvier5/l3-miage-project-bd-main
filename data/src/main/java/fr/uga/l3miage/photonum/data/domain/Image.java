@@ -2,8 +2,6 @@ package fr.uga.l3miage.photonum.data.domain;
 
 import java.util.List;
 
-import org.springframework.expression.spel.CodeFlow.ClinitAdder;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -22,9 +20,9 @@ public class Image {
     private Boolean estPartage;
 
     @ManyToOne
-    private Client client;
+    private Client proprietaireImage;
 
-    @OneToMany
+    @OneToMany(mappedBy = "image")
     List<Photo> photos;
 
     public Long getId() {
@@ -68,11 +66,11 @@ public class Image {
     }
 
     public Client getClient() {
-        return client;
+        return this.proprietaireImage;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClient(Client propieretaireImage) {
+        this.proprietaireImage = propieretaireImage;
     }
 
     public List<Photo> getPhotos() {
@@ -86,6 +84,17 @@ public class Image {
     // add photos?
 
     // hashcode and equals?
+
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Image) || other == null){
+            return false;
+        }
+
+        Image otherImage = (Image) other;
+
+        return otherImage.getCheminAcces().equals(this.cheminAcces);
+    }
 
     
 }

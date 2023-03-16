@@ -23,10 +23,10 @@ public class Photo {
     @ManyToMany
     private List<Tirage> tirages;
     
-    @ManyToOne
-    private Page page;
+    @ManyToMany
+    private List<Page> pages;
 
-    @OneToMany
+    @OneToMany(mappedBy = "couverture")
     private List<Album> albums;
 
     @ManyToMany
@@ -72,12 +72,12 @@ public class Photo {
         this.tirages = tirages;
     }
 
-    public Page getPage() {
-        return page;
+    public List<Page> getPage() {
+        return pages;
     }
 
-    public void setPage(Page p) {
-        page = p;
+    public void setPage(List<Page> pages) {
+        this.pages = pages;
     }
 
     public List<Album> getAlbums() {
@@ -98,4 +98,16 @@ public class Photo {
 
     // add cadres, add albums, add tirage?
     // equals, hash code
+
+
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Photo) || other == null){
+            return false;
+        }
+
+        Photo otherPhoto = (Photo) other;
+        return otherPhoto.getImage().equals(this.image)
+        && otherPhoto.getParamRetoucheImg().equals(this.paramRetoucheImg);
+    }
 }
