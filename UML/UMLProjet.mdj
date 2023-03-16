@@ -1215,7 +1215,7 @@
 										"$ref": "AAAAAAGG28DPQd9qFHA="
 									},
 									"edgePosition": 2,
-									"text": "impression"
+									"text": "impressions"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1279,7 +1279,7 @@
 									"hostEdge": {
 										"$ref": "AAAAAAGG28DPQd9qFHA="
 									},
-									"text": "propriétaireImpression"
+									"text": "proprietaireImpression"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4085,7 +4085,7 @@
 											"top": 908,
 											"width": 190.04248046875,
 											"height": 13,
-											"text": "parametreRetoucheImage: string",
+											"text": "paramRetoucheImg: string",
 											"horizontalAlignment": 0
 										}
 									],
@@ -6439,16 +6439,16 @@
 										"$ref": "AAAAAAGG3ATTIF3yM1o="
 									},
 									"font": "Arial;13;0",
-									"left": 382,
+									"left": 368,
 									"top": 268,
-									"width": 73.34716796875,
+									"width": 101.88623046875,
 									"height": 13,
 									"alpha": 0.4307076630456508,
 									"distance": 51.66236541235796,
 									"hostEdge": {
 										"$ref": "AAAAAAGG3ATTIV30rj8="
 									},
-									"text": "proprietaire"
+									"text": "proprietaireImage"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6538,7 +6538,7 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAGG3ATTIl33OSQ="
 							},
-							"showEndOrder": "forward",
+							"showEndOrder": "backward",
 							"tailRoleNameLabel": {
 								"$ref": "AAAAAAGG3ATTIl34Gfs="
 							},
@@ -6713,16 +6713,16 @@
 										"$ref": "AAAAAAGG5fii3tRGndc="
 									},
 									"font": "Arial;13;0",
-									"left": 711,
+									"left": 708,
 									"top": 870,
-									"width": 28.919921875,
+									"width": 35.419921875,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
 									"hostEdge": {
 										"$ref": "AAAAAAGG5fii4NRIzBY="
 									},
-									"text": "page"
+									"text": "pages"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -6763,7 +6763,7 @@
 									"hostEdge": {
 										"$ref": "AAAAAAGG5fii4NRIzBY="
 									},
-									"text": "0..1"
+									"text": "0..*"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -8395,7 +8395,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGG28DPQN9m95A="
 								},
-								"name": "impression",
+								"name": "impressions",
 								"reference": {
 									"$ref": "AAAAAAGG279Eytyv8YU="
 								},
@@ -8407,7 +8407,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGG28DPQN9m95A="
 								},
-								"name": "propriétaireImpression",
+								"name": "proprietaireImpression",
 								"reference": {
 									"$ref": "AAAAAAGG27X8eNC5jsA="
 								},
@@ -8994,11 +8994,11 @@
 								"_parent": {
 									"$ref": "AAAAAAGG5fii3tREkFo="
 								},
-								"name": "page",
+								"name": "pages",
 								"reference": {
 									"$ref": "AAAAAAGG2+guVeFwu1c="
 								},
-								"multiplicity": "0..1"
+								"multiplicity": "0..*"
 							}
 						},
 						{
@@ -9092,7 +9092,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGG2+YScdAlg3M="
 							},
-							"name": "parametreRetoucheImage",
+							"name": "paramRetoucheImg",
 							"type": "string"
 						}
 					]
@@ -9130,7 +9130,7 @@
 								"_parent": {
 									"$ref": "AAAAAAGG3ATTIF3w4YU="
 								},
-								"name": "proprietaire",
+								"name": "proprietaireImage",
 								"reference": {
 									"$ref": "AAAAAAGG27X8eNC5jsA="
 								},

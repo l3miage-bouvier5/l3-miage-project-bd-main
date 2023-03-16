@@ -13,7 +13,7 @@ public class Calendrier extends Impression{
     private Long annee;
     
     @ManyToMany(mappedBy="calendriers")
-    private Page[] pages = new Page[12];
+    private Page[] pages;
 
     public Long getAnnee() {
         return annee;

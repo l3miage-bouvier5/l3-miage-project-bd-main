@@ -17,13 +17,11 @@ public abstract class Impression {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-
-    @ManyToOne
-    private Client client;
-
-
     @OneToMany(mappedBy = "impression")
     private List<Article> articles;
+
+    @ManyToOne
+    private Client proprietaireImpression;
 
     public List<Article> getArticles() {
         return articles;
@@ -32,8 +30,6 @@ public abstract class Impression {
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
-    @ManyToOne
-    private Client proprietaireImpression;
 
     public Date getDate() {
         return date;
@@ -47,6 +43,15 @@ public abstract class Impression {
         return id;
     }
 
+    public Client getProprietaireImpression() {
+        return proprietaireImpression;
+    }
+
+    public void setProprietaireImpression(Client proprietaireImpression) {
+        this.proprietaireImpression = proprietaireImpression;
+    }
+
     @Override
     public abstract boolean equals(Object other);
+
 }

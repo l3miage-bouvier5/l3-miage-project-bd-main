@@ -18,17 +18,17 @@ public class Commande {
     
     @Id
     @GeneratedValue
-    @Column(name="cmdId")
+    @Column(name="id")
     private Long id;
 
-    @Column(name="dateCmd")
+    @Column(name="date")
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @Column(name="prixCmd")
+    @Column(name="prix_total")
     private float prixTotal;
 
-    @Column(name="etatCmd")
+    @Column(name="validee")
     private boolean validee;
 
     // (UML) Relation ContientArticles

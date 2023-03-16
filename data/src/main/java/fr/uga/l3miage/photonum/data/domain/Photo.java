@@ -23,8 +23,8 @@ public class Photo {
     @ManyToMany
     private List<Tirage> tirages;
     
-    @ManyToOne
-    private Page page;
+    @ManyToMany
+    private List<Page> pages;
 
     @OneToMany(mappedBy = "couverture")
     private List<Album> albums;
@@ -72,12 +72,12 @@ public class Photo {
         this.tirages = tirages;
     }
 
-    public Page getPage() {
-        return page;
+    public List<Page> getPage() {
+        return pages;
     }
 
-    public void setPage(Page p) {
-        page = p;
+    public void setPage(List<Page> pages) {
+        this.pages = pages;
     }
 
     public List<Album> getAlbums() {

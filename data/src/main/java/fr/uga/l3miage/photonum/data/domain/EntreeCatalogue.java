@@ -12,13 +12,13 @@ public class EntreeCatalogue {
 
     @Id
     @GeneratedValue
-    @Column(name="idEntree")
+    @Column(name="id")
     private Long id;
 
-    @Column(name="refEntree")
+    @Column(name="ref")
     private String ref;
 
-    @Column(name="prixEntree")
+    @Column(name="prix")
     private float prix;
 
     // (UML) Relation ContientEntrees

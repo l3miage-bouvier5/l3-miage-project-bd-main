@@ -17,7 +17,7 @@ public class Client {
 
 
     @Column(name = "adrMail")
-    private String adrMail;
+    private String adresseMail;
 
 
     @Column(name = "nom")
@@ -37,7 +37,7 @@ public class Client {
 
 
     @OneToMany(mappedBy = "client")
-    private Commande commande;
+    private List<Commande> commandes;
 
 
     @OneToMany(mappedBy = "proprietaireImage")
@@ -56,13 +56,13 @@ public class Client {
     }
 
 
-    public Commande getCommande() {
-        return commande;
+    public List<Commande> getCommande() {
+        return this.commandes;
     }
 
 
-    public void setCommande(Commande commande) {
-        this.commande = commande;
+    public void setCommande(List<Commande> commandes) {
+        this.commandes = commandes;
     }
 
 
@@ -76,13 +76,13 @@ public class Client {
     }
 
 
-    public String getAdrMail() {
-        return adrMail;
+    public String getAdresseMail() {
+        return adresseMail;
     }
 
 
-    public void setAdrMail(String adrMail) {
-        this.adrMail = adrMail;
+    public void setAdresseMail(String adrMail) {
+        this.adresseMail = adrMail;
     }
 
 

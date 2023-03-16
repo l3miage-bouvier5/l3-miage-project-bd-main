@@ -14,23 +14,23 @@ public class Article {
 
     @Id
     @GeneratedValue
-    @Column(name="artId")
+    @Column(name="id")
     private Long id;
 
     @GeneratedValue
-    @Column(name="refArticle")
+    @Column(name="ref")
     private String ref;
 
-    @Column(name="prixArticle")
+    @Column(name="prix")
     private float prix;
 
-    @Column(name="qualiteArticle")
+    @Column(name="qualite")
     private Qualite qualite;
 
-    @Column(name="formatArticle")
+    @Column(name="format")
     private Format format;
 
-    @Column(name="quantiteCmd")
+    @Column(name="quantite")
     private int quantite;
 
     // (UML) Relation AppartientA

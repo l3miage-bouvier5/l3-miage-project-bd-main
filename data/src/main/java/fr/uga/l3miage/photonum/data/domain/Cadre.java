@@ -1,6 +1,5 @@
 package fr.uga.l3miage.photonum.data.domain;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -22,7 +21,7 @@ public class Cadre extends Impression{
     private String miseEnPage;
 
     @ManyToMany
-    private Set<Photo> photos = new HashSet<Photo>();
+    private Set<Photo> photos;
 
 
 
