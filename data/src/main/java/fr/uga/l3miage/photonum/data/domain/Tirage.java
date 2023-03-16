@@ -8,5 +8,5 @@ import jakarta.persistence.OneToMany;
 public class Tirage extends Impression{
     
     @OneToMany
-    private Set<Photo> photos = new HashSet<Photo>();
+    private Set<Photo> photos;
 }
