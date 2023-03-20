@@ -31,9 +31,14 @@ public class ImpressionRepository implements CRUDRepository<Long, Impression> {
     }
 
 
+    /**
+     * Renvoie toutes les impressions
+     *
+     * @return une liste d'impressions trié par id
+     */
     @Override
     public List<Impression> all() {
-        return null;
+        return entityManager.createQuery("select i from Impression i order by i.fullName", Impression.class).getResultList();
     }
 
 }
