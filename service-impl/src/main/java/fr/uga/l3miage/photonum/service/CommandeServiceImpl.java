@@ -47,6 +47,11 @@ public class CommandeServiceImpl implements CommandeService {
 
     @Override
     public void delete(Long id) throws EntityNotFoundException {
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        Commande commande = get(id);
+        if (commande == null) {
+            throw new EntityNotFoundException("impression with id=%d not found".formatted(id));
+        }
+
+        commandeRepository.delete(commande);
     }
 }
