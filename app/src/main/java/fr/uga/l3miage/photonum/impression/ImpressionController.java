@@ -9,7 +9,7 @@ import fr.uga.l3miage.photonum.service.ImpressionService;
 @RequestMapping(value = "/api/v1", produces = "application/json")
 public class ImpressionController {
 
-    private final ImpressionService authorService;
+    private final ImpressionService impressionService;
 
 
     
