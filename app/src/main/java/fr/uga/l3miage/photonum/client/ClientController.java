@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import fr.uga.l3miage.photonum.commande.CommandeDTO;
+import fr.uga.l3miage.photonum.commande.CommandeMapper;
 import fr.uga.l3miage.photonum.data.domain.Client;
+import fr.uga.l3miage.photonum.data.domain.Commande;
 import fr.uga.l3miage.photonum.service.ClientService;
 import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -29,6 +32,7 @@ import jakarta.validation.constraints.NotNull;
 public class ClientController {
     private final ClientMapper clientMapper;
     private final ClientService clientService;
+    private final CommandeMapper commandeMapper;
 
     @Autowired
     public ClientController(ClientMapper clientMapper, ClientService clientService){
@@ -87,11 +91,11 @@ public class ClientController {
         }
     }
 
-    @GetMapping("/authors/{id}/books")
-    public Collection<BookDTO> books(@PathVariable("id") @NotNull Long authorId) {
+    @GetMapping("/client/{id}/commandes")
+    public Collection<CommandeDTO> books(@PathVariable("id") @NotNull Long clientId) {
         try {
-            var author = authorService.get(authorId);
-            return booksMapper.entityToDTO(author.getBooks());
+            var client = clientService.get(clientId);
+            return commandeMapper.entityToDTO(client.getCommandes());
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
         }

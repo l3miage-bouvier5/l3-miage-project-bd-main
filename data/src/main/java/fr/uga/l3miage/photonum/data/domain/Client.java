@@ -50,20 +50,10 @@ public class Client {
         return impressions;
     }
 
-
     public void setImpressions(List<Impression> impressions) {
         this.impressions = impressions;
     }
 
-
-    public List<Commande> getCommande() {
-        return this.commandes;
-    }
-
-
-    public void setCommande(List<Commande> commandes) {
-        this.commandes = commandes;
-    }
 
 
     public Long getId() {
@@ -133,5 +123,21 @@ public class Client {
         return otherClient.getNom().equals(this.nom) 
         && otherClient.getPrenoms().equals(this.prenoms)
         && otherClient.getAdressesPostales().equals(this.adressesPostales); 
+    }
+
+    public List<Commande> getCommandes() {
+        return commandes;
+    }
+
+    public void setCommandes(List<Commande> commandes) {
+        this.commandes = commandes;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }
