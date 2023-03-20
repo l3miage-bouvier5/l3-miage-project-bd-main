@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.service.ImpressionService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -35,8 +36,15 @@ public class ImpressionController {
 
     @GetMapping("/impressions")
     public Collection<ImpressionDTO> impressions(@RequestParam(value = "q", required = false) String query) {
-        // TODO
-        return null;
+        Collection<Impression> authors;
+        if (query == null) {
+            authors = imprService.list();
+        } else {
+            authors = imprService.searchByOwner(query);
+        }
+        return authors.stream()
+                .map(authorMapper::entityToDTO)
+                .toList();
     }
 
     @GetMapping("/impressions/{id}")
