@@ -38,13 +38,11 @@ public class ImpressionController {
     }
 
     @GetMapping("/impressions")
-    public Collection<ImpressionDTO> impressions(@RequestParam(value = "q", required = false) String query) {
+    public Collection<ImpressionDTO> impressions() {
         Collection<Impression> impressions = null;
-        if (query == null) {
-            impressions = imprService.list();
-        } else {
-            // impressions = impressionService.searchByName(query);
-        }
+        
+        impressions = imprService.list();
+
         return impressions.stream()
                 .map(imprMapper::entityToDTO)
                 .toList();

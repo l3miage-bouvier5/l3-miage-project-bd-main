@@ -1,6 +1,9 @@
 package fr.uga.l3miage.photonum.service;
 
+import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.data.domain.Client;
+import fr.uga.l3miage.photonum.data.domain.Commande;
+import fr.uga.l3miage.photonum.data.domain.Image;
 import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.repo.ClientRepository;
 import jakarta.transaction.Transactional;
@@ -16,6 +19,9 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
     private final ImpressionService impressionService;
+    private final ImageService imageService;
+    private final CommandeService commandeService;
+    private final AdresseService adresseService;
 
     @Autowired
     public ClientServiceImpl(ClientRepository clientRepository) {
@@ -48,6 +54,8 @@ public class ClientServiceImpl implements ClientService {
         if(client == null){
             throw new EntityNotFoundException("client with id=%d not found".formatted(id));
         }
+
+        
         List<Impression> impressions= client.getImpressions();
         if(impressions != null ){
             for (Impression impr : impressions){
@@ -55,7 +63,30 @@ public class ClientServiceImpl implements ClientService {
             }
         }
 
-        List<>
+        List<Image> images = client.getImages();
+
+        if(images != null){
+            for(Image im : images){
+                imageService.delete(im.getId());
+            }
+        }
+
+        List<Commande> commandes = client.getCommandes();
+
+        if(commandes != null){
+            for(Commande co : commandes){
+                commandeService.delete(co.getId());
+            }
+        }
+
+
+        List<Adresse> adresses = client.getAdressesPostales();
+
+        if(adresses != null){
+            for(Adresse ad: adresses){
+                adresseService.delete(ad.getId());
+            }
+        }
 
         clientRepository.delete(client);
     }
