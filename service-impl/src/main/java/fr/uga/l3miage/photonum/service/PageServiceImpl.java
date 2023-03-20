@@ -22,21 +22,21 @@ public class PageServiceImpl implements PageService {
 
     @Override
     public Page save(Page page) {
-        return null;
+        return pageRepository.save(page);
     }
 
     @Override
     public Page get(Long id) throws EntityNotFoundException {
-        return null;
+        return pageRepository.get(id);
     }
 
     @Override
     public Collection<Page> list() {
-        return null;
+        return pageRepository.all();
     }
 
     @Override
     public Page update(Page object) throws EntityNotFoundException {
-        return null;
+        return pageRepository.save(object);
     }
 }

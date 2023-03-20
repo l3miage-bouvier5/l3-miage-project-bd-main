@@ -22,21 +22,21 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public Album save(Album album) {
-        return null;
+        return albumRepository.save(album);
     }
 
     @Override
     public Album get(Long id) throws EntityNotFoundException {
-        return null;
+        return albumRepository.get(id);
     }
 
     @Override
     public Collection<Album> list() {
-        return null;
+        return albumRepository.all();
     }
 
     @Override
     public Album update(Album object) throws EntityNotFoundException {
-        return null;
+        return albumRepository.save(object);
     }
 }
