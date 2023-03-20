@@ -27,9 +27,6 @@ public class Article {
     @Column(name="qualite")
     private Qualite qualite;
 
-    @Column(name="format")
-    private Format format;
-
     @Column(name="quantite")
     private int quantite;
 
@@ -96,16 +93,6 @@ public class Article {
     }
 
 
-    public Format getFormat() {
-        return format;
-    }
-
-
-    public void setFormat(Format format) {
-        this.format = format;
-    }
-
-
     public int getQuantite() {
         return quantite;
     }
@@ -143,7 +130,6 @@ public class Article {
         Article otherArticle = (Article) other;
 
         return otherArticle.getImpression().equals(this.impression)
-        && otherArticle.getFormat().equals(this.format)
         && otherArticle.qualite.equals(this.qualite);
     }
 }
