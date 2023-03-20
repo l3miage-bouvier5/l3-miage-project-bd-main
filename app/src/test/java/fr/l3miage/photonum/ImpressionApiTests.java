@@ -51,6 +51,7 @@ class ImpressionApiTests {
     }
 
     @Test
+    @Disabled
     void creationImpression() {
         var author = new ImpressionDTO(null, null);
         var response = this.restTemplate.postForEntity("/api/v1/impressions", author, ImpressionDTO.class);

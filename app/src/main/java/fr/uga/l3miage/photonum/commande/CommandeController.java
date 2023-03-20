@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/v1", produces = "application/json")
 public class CommandeController {
     
-    private final Command
+    // private final Command
 }
