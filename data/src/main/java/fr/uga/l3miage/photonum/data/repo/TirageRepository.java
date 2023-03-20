@@ -1,6 +1,6 @@
 package fr.uga.l3miage.photonum.data.repo;
 
-import fr.uga.l3miage.photonum.data.domain.Impression;
+import fr.uga.l3miage.photonum.data.domain.Tirage;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -8,37 +8,37 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ImpressionRepository implements CRUDRepository<Long, Impression> {
+public class TirageRepository implements CRUDRepository<Long, Tirage> {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public Impression save(Impression impression) {
-        entityManager.persist(impression);
-        return impression;
+    public Tirage save(Tirage tirage) {
+        entityManager.persist(tirage);
+        return tirage;
     }
 
     @Override
-    public Impression get(Long id) {
-        return entityManager.find(Impression.class, id);
+    public Tirage get(Long id) {
+        return entityManager.find(Tirage.class, id);
     }
 
 
     @Override
-    public void delete(Impression impression) {
-        entityManager.remove(impression);
+    public void delete(Tirage tirage) {
+        entityManager.remove(tirage);
     }
 
 
     /**
-     * Renvoie toutes les impressions
+     * Renvoie toutes les tirages
      *
-     * @return une liste d'impressions trié par id
+     * @return une liste des tirages 
      */
     @Override
-    public List<Impression> all() {
-        return entityManager.createQuery("select i from Impression i order by i.fullName", Impression.class).getResultList();
+    public List<Tirage> all() {
+        return entityManager.createQuery("select t from Tirage t", Tirage.class).getResultList();
     }
 
 }

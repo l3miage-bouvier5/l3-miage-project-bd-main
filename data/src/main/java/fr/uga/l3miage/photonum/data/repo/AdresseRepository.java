@@ -1,6 +1,6 @@
 package fr.uga.l3miage.photonum.data.repo;
 
-import fr.uga.l3miage.photonum.data.domain.Impression;
+import fr.uga.l3miage.photonum.data.domain.Adresse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -8,37 +8,37 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ImpressionRepository implements CRUDRepository<Long, Impression> {
+public class AdresseRepository implements CRUDRepository<Long, Adresse> {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public Impression save(Impression impression) {
-        entityManager.persist(impression);
-        return impression;
+    public Adresse save(Adresse adresse) {
+        entityManager.persist(adresse);
+        return adresse;
     }
 
     @Override
-    public Impression get(Long id) {
-        return entityManager.find(Impression.class, id);
+    public Adresse get(Long id) {
+        return entityManager.find(Adresse.class, id);
     }
 
 
     @Override
-    public void delete(Impression impression) {
-        entityManager.remove(impression);
+    public void delete(Adresse adresse) {
+        entityManager.remove(adresse);
     }
 
 
     /**
-     * Renvoie toutes les impressions
+     * Renvoie toutes les adresses
      *
-     * @return une liste d'impressions trié par id
+     * @return une liste d'adresses trié par la ville
      */
     @Override
-    public List<Impression> all() {
-        return entityManager.createQuery("select i from Impression i order by i.fullName", Impression.class).getResultList();
+    public List<Adresse> all() {
+        return entityManager.createQuery("select a from Adresse a order by a.ville", Adresse.class).getResultList();
     }
 
 }

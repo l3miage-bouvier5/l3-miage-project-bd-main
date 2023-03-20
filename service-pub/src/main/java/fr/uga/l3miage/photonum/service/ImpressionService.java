@@ -14,5 +14,13 @@ public interface ImpressionService extends BaseService<Impression, Long> {
      */
     Impression save(Impression impression);
 
+    /**
+     * Deletes an impression
+     *
+     * @param id id of the impression to delete
+     * @throws EntityNotFoundException when the entity do not already exists
+     */
+    void delete(Long id) throws EntityNotFoundException;
+
 
 }
