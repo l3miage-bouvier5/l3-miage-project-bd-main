@@ -1,11 +1,21 @@
 package fr.uga.l3miage.photonum.data.domain;
 
 public enum Format {
-    A0,
+    CM10x15,
+    CM13x18,
+    A4,
+    CM24x30,
+    CM30x40,
+    CM40x50,
+    CM40x60,
+    CM50x60,
+    CM50x70,
     A1,
+    CM60x80,
+    CM70x100,
+    A0,
     A2,
     A3,
-    A4,
     A5,
     A6,
     A7

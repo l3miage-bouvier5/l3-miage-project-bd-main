@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToMany;
 public class Cadre extends Impression{
     
     @Column(name = "taille_cadre")
-    private TailleCadre taille;
+    private Format taille;
 
     @Column(name="mise_en_page")
     private String miseEnPage;
@@ -22,11 +22,11 @@ public class Cadre extends Impression{
     private Set<Photo> photos;
     
 
-    public TailleCadre getTaille() {
+    public Format getTaille() {
         return taille;
     }
 
-    public void setTaille(TailleCadre taille) {
+    public void setTaille(Format taille) {
         this.taille = taille;
     }
 
