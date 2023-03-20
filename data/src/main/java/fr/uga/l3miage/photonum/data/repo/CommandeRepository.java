@@ -29,6 +29,6 @@ public class CommandeRepository implements CRUDRepository<Long, Commande> {
 
     @Override
     public List<Commande> all() {
-        throw new UnsupportedOperationException("Unimplemented method 'all'");
+        return entityManager.createQuery("select c from Commande group by c.id", Commande.class).getResultList();
     }
 }
