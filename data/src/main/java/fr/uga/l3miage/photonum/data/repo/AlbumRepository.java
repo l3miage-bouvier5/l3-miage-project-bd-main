@@ -1,6 +1,6 @@
 package fr.uga.l3miage.photonum.data.repo;
 
-import fr.uga.l3miage.photonum.data.domain.Impression;
+import fr.uga.l3miage.photonum.data.domain.Album;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
@@ -8,37 +8,37 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class ImpressionRepository implements CRUDRepository<Long, Impression> {
+public class AlbumRepository implements CRUDRepository<Long, Album> {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public Impression save(Impression impression) {
-        entityManager.persist(impression);
-        return impression;
+    public Album save(Album album) {
+        entityManager.persist(album);
+        return album;
     }
 
     @Override
-    public Impression get(Long id) {
-        return entityManager.find(Impression.class, id);
+    public Album get(Long id) {
+        return entityManager.find(Album.class, id);
     }
 
 
     @Override
-    public void delete(Impression impression) {
-        entityManager.remove(impression);
+    public void delete(Album album) {
+        entityManager.remove(album);
     }
 
 
     /**
-     * Renvoie toutes les impressions
+     * Renvoie toutes les albums
      *
-     * @return une liste d'impressions trié par id
+     * @return une liste d'albums trié par titreCouverture
      */
     @Override
-    public List<Impression> all() {
-        return entityManager.createQuery("select i from Impression i order by i.fullName", Impression.class).getResultList();
+    public List<Album> all() {
+        return entityManager.createQuery("select a from Album a order by a.titreCouverture", Album.class).getResultList();
     }
 
 }
