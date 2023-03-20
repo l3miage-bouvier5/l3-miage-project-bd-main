@@ -40,10 +40,10 @@ public class Client {
     private List<Commande> commandes;
 
 
-    @OneToMany(mappedBy = "proprietaire_image")
+    @OneToMany(mappedBy = "proprietaireImage")
     private List<Image> images;
 
-    @OneToMany(mappedBy = "proprietaire_impression")
+    @OneToMany(mappedBy = "proprietaireImpression")
     private List<Impression> impressions;
 
     public List<Impression> getImpressions() {

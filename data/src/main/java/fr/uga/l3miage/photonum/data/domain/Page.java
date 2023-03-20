@@ -10,7 +10,7 @@ public class Page {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "page")
+    @ManyToMany(mappedBy = "pages")
     private List<Photo> photos;
     
     @ManyToMany
