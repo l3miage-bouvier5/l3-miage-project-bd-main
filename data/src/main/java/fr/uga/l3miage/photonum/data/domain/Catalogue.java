@@ -3,22 +3,26 @@ package fr.uga.l3miage.photonum.data.domain;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class Catalogue {
 
     // (UML) Relation ContientEntrees
-    @OneToMany(mappedBy = "catalogue")
-    private List<EntreeCatalogue> entreesCatalogue;
+    @Id
+    @GeneratedValue
+    Long id;
 
-    public List<EntreeCatalogue> getEntreesCatalogue() {
-        return entreesCatalogue;
-    }
+    float prix;
 
-    public void setEntreesCatalogue(List<EntreeCatalogue> entreesCatalogue) {
-        this.entreesCatalogue = entreesCatalogue;
-    }
+    TypeImpression typeImpression;
+
+    Format format;
+
+    Qualite qualite;
+
     @Override
     public boolean equals(Object other){
         if(!(other instanceof Catalogue) || other == null){
@@ -27,7 +31,37 @@ public class Catalogue {
 
         Catalogue otherCatalogue = (Catalogue) other;
 
-
-        return otherCatalogue.getEntreesCatalogue().equals(this.entreesCatalogue);
+        //TODO!!!!!!!!!!!!!!!!!!!
+        return false;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public float getPrix() {
+        return prix;
+    }
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+    public TypeImpression getTypeImpression() {
+        return typeImpression;
+    }
+    public void setTypeImpression(TypeImpression typeImpression) {
+        this.typeImpression = typeImpression;
+    }
+    public Format getFormat() {
+        return format;
+    }
+    public void setFormat(Format format) {
+        this.format = format;
+    }
+    public Qualite getQualite() {
+        return qualite;
+    }
+    public void setQualite(Qualite qualite) {
+        this.qualite = qualite;
     }
 }

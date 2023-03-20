@@ -15,16 +15,12 @@ public class Cadre extends Impression{
     @Column(name = "taille_cadre")
     private TailleCadre taille;
 
-    @Column(name = "qualite_cadre")
-    private QualiteCadre qualiteCadre;
-
     @Column(name="mise_en_page")
     private String miseEnPage;
 
     @ManyToMany
     private Set<Photo> photos;
-
-
+    
 
     public TailleCadre getTaille() {
         return taille;
@@ -43,15 +39,6 @@ public class Cadre extends Impression{
     }
 
     
-    public QualiteCadre getQualiteCadre() {
-        return qualiteCadre;
-    }
-    
-    public void setQualiteCadre(QualiteCadre qualiteCadre) {
-        this.qualiteCadre = qualiteCadre;
-    }
-
-    
     public String getMiseEnPage() {
         return miseEnPage;
     }
@@ -67,8 +54,7 @@ public class Cadre extends Impression{
         }
         Cadre otherCadre = (Cadre) other;
 
-        return otherCadre.getQualiteCadre().equals(this.qualiteCadre)
-        && otherCadre.getTaille().equals(this.taille)
+        return otherCadre.getTaille().equals(this.taille)
         && otherCadre.getPhotos().equals(this.photos)
         && otherCadre.getMiseEnPage().equals(this.miseEnPage);
     }
