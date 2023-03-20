@@ -6,6 +6,8 @@ import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.data.domain.Album;
 import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Page;
+
+import fr.uga.l3miage.photonum.data.domain.Client;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 
 import java.util.Random;
@@ -45,6 +47,13 @@ public class Fixtures {
         Page page = new Page();
         // ...
         return page;
+    }
+
+    public static Client newClient(){
+        Client client = new Client();
+        client.setNom(FAKER.name().name());
+        client.setAdresseMail(FAKER.internet().emailAddress());
+        return client;
     }
 
 }

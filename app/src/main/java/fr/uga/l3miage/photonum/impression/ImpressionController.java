@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import fr.uga.l3miage.photonum.data.domain.Impression;
+import fr.uga.l3miage.photonum.data.repo.ImpressionRepository;
 import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import fr.uga.l3miage.photonum.service.ImpressionService;
 import jakarta.validation.Valid;
@@ -38,16 +39,15 @@ public class ImpressionController {
 
     @GetMapping("/impressions")
     public Collection<ImpressionDTO> impressions(@RequestParam(value = "q", required = false) String query) {
-        // Collection<Impression> impressions;
-        // if (query == null) {
-        //     impressions = imprService.list();
-        // } else {
-        //     impressions = imprService.cr
-        // }
-        // return impressions.stream()
-        //         .map(imprMapper::entityToDTO)
-        //         .toList();
-        return null;
+        Collection<Impression> impressions = null;
+        if (query == null) {
+            impressions = imprService.list();
+        } else {
+            // impressions = impressionService.searchByName(query);
+        }
+        return impressions.stream()
+                .map(imprMapper::entityToDTO)
+                .toList();
     }
 
     @GetMapping("/impressions/{id}")
@@ -80,6 +80,13 @@ public class ImpressionController {
         }
     }
 
-    // @Override
-    // public void deleteImpression(Long id) throws EntityNotFoundException {}
+    @DeleteMapping("/impressions/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAuthor(@PathVariable("id") @NotNull Long id) {
+        try {
+            imprService.delete(id);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
+        }
+    }
 }
