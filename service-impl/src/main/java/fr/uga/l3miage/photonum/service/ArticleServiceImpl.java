@@ -22,21 +22,21 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article save(Article article) {
-        return null;
+        return articleRepository.save(article);
     }
 
     @Override
     public Article get(Long id) throws EntityNotFoundException {
-        return null;
+        return articleRepository.get(id);
     }
 
     @Override
     public Collection<Article> list() {
-        return null;
+        return articleRepository.all();
     }
 
     @Override
     public Article update(Article object) throws EntityNotFoundException {
-        return null;
+        return articleRepository.save(object);
     }
 }

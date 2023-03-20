@@ -22,21 +22,22 @@ public class AdresseServiceImpl implements AdresseService {
 
     @Override
     public Adresse save(Adresse adresse) {
-        return null;
+        return adresseRepository.save(adresse);
     }
 
     @Override
     public Adresse get(Long id) throws EntityNotFoundException {
-        return null;
+        return adresseRepository.get(id);
     }
 
     @Override
     public Collection<Adresse> list() {
-        return null;
+        return adresseRepository.all();
     }
 
     @Override
     public Adresse update(Adresse object) throws EntityNotFoundException {
-        return null;
+        return adresseRepository.save(object);
     }
+
 }
