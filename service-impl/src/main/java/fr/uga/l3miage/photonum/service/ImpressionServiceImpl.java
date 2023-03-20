@@ -39,4 +39,20 @@ public class ImpressionServiceImpl implements ImpressionService {
     public Impression update(Impression object) throws EntityNotFoundException {
         return impressionRepository.save(object);
     }
+
+
+    @Override
+    public void delete(Long id) throws EntityNotFoundException {
+        Impression impression = get(id);
+        if (impression == null) {
+            throw new EntityNotFoundException("impression with id=%d not found".formatted(id));
+        }
+
+        impressionRepository.delete(impression);
+    }
+
+        
+
+
 }
+
