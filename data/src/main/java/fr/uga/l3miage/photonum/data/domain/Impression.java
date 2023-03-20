@@ -30,8 +30,8 @@ public class Impression {
         return articles;
     }
 
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
+    public void addArticle(Article article) {
+        this.articles.add(article);
     }
 
     public Date getDate() {
