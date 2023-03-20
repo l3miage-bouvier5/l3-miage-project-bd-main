@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Impression {
+public class Impression {
 
     @Id
     @GeneratedValue
@@ -53,8 +53,5 @@ public abstract class Impression {
     public void setProprietaireImpression(Client proprietaireImpression) {
         this.proprietaireImpression = proprietaireImpression;
     }
-
-    @Override
-    public abstract boolean equals(Object other);
 
 }
