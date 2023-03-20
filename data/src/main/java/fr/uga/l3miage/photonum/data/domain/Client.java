@@ -16,7 +16,7 @@ public class Client {
     private Long id;
 
 
-    @Column(name = "adrMail")
+    @Column(name = "adresse_mail")
     private String adresseMail;
 
 
@@ -28,7 +28,7 @@ public class Client {
     private String prenoms;
 
 
-    @Column(name = "motDePasse")
+    @Column(name = "mot_de_passe")
     private String motDePasse;
 
 
@@ -40,10 +40,10 @@ public class Client {
     private List<Commande> commandes;
 
 
-    @OneToMany(mappedBy = "proprietaireImage")
+    @OneToMany(mappedBy = "proprietaire_image")
     private List<Image> images;
 
-    @OneToMany(mappedBy = "proprietaireImpression")
+    @OneToMany(mappedBy = "proprietaire_impression")
     private List<Impression> impressions;
 
     public List<Impression> getImpressions() {

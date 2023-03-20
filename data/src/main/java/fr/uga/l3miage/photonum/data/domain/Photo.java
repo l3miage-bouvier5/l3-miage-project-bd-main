@@ -15,6 +15,7 @@ public class Photo {
     private String texteDescriptif;
     // this is optional
 
+    @Column(name = "param_retouche_img")
     private String paramRetoucheImg;
 
     @ManyToOne

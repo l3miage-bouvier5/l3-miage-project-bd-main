@@ -12,12 +12,13 @@ import jakarta.persistence.ManyToMany;
 @Entity
 public class Cadre extends Impression{
     
-    @Column(name = "tailleCadre")
+    @Column(name = "taille_cadre")
     private TailleCadre taille;
 
-    @Column(name = "qualiteCadre")
+    @Column(name = "qualite_cadre")
     private QualiteCadre qualiteCadre;
 
+    @Column(name="mise_en_page")
     private String miseEnPage;
 
     @ManyToMany
