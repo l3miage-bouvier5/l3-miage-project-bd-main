@@ -14,5 +14,5 @@ public interface CommandeMapper {
 
     Commande dtoToEntity(CommandeDTO commandeDTO);
 
-    Collection<Commande> dtoToEntity(Iterable<CommandeDTO> commandes);
+    Collection<Commande> dtoToEntity(Iterable<CommandeDTO> commandesDTO);
 }
