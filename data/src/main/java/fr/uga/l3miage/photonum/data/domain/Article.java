@@ -27,9 +27,6 @@ public class Article {
     @Column(name="qualite")
     private Qualite qualite;
 
-    @Column(name="format")
-    private Format format;
-
     @Column(name="quantite")
     private int quantite;
 
