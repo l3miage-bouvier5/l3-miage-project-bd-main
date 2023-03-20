@@ -2,10 +2,15 @@ package fr.uga.l3miage.photonum.data.repo;
 
 import com.github.javafaker.Faker;
 
+import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Client;
+import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Fixtures {
 
@@ -22,6 +27,13 @@ public class Fixtures {
         client.setNom(FAKER.name().name());
         client.setAdresseMail(FAKER.internet().emailAddress());
         return client;
+    }
+
+    public static Impression newImpression(Client client, Date date, Article... articles){
+        Impression impr = new Impression();
+        impr.setProprietaireImpression(client);
+        impr.setDate(date);
+        return impr;
     }
 
 }
