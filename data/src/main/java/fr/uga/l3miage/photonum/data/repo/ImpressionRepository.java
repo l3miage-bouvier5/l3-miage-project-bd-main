@@ -38,7 +38,7 @@ public class ImpressionRepository implements CRUDRepository<Long, Impression> {
      */
     @Override
     public List<Impression> all() {
-        return entityManager.createQuery("select i from Impression i order by i.fullName", Impression.class).getResultList();
+        return entityManager.createQuery("select i from Impression i order by i.id", Impression.class).getResultList();
     }
 
 }

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import fr.uga.l3miage.photonum.data.domain.Impression;
+import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import fr.uga.l3miage.photonum.service.ImpressionService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -36,39 +38,48 @@ public class ImpressionController {
 
     @GetMapping("/impressions")
     public Collection<ImpressionDTO> impressions(@RequestParam(value = "q", required = false) String query) {
-        Collection<Impression> authors;
-        if (query == null) {
-            authors = imprService.list();
-        } else {
-            authors = imprService.searchByOwner(query);
-        }
-        return authors.stream()
-                .map(authorMapper::entityToDTO)
-                .toList();
+        // Collection<Impression> impressions;
+        // if (query == null) {
+        //     impressions = imprService.list();
+        // } else {
+        //     impressions = imprService.cr
+        // }
+        // return impressions.stream()
+        //         .map(imprMapper::entityToDTO)
+        //         .toList();
+        return null;
     }
 
     @GetMapping("/impressions/{id}")
     public ImpressionDTO impression(@PathVariable("id") @NotNull Long id) {
-        // TODO
-        return null;
+        try {
+            return imprMapper.entityToDTO(imprService.get(id));
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
+        }
     }
 
     @PostMapping(value = "/impressions", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ImpressionDTO newImpression(@RequestBody @Valid ImpressionDTO impression) {
-        // TODO
-        return null;
+        var saved = imprService.save(imprMapper.dtoToEntity(impression));
+        return imprMapper.entityToDTO(saved);
     }
 
     @PutMapping(value = "/impressions/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ImpressionDTO updateImpression(@RequestBody @Valid ImpressionDTO impression, @NotNull @PathVariable("id") Long id) {
-        // TODO
-        return null;
+        try {
+            if (impression.id().equals(id)) {
+                imprService.get(id);
+                var updated = imprService.update(imprMapper.dtoToEntity(impression));
+                return imprMapper.entityToDTO(updated);
+            }
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "impression is not found", e);
+        }
     }
 
-    @DeleteMapping("/impressions/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteImpression(@PathVariable("id") @NotNull Long id) {
-        // TODO
-    }
+    // @Override
+    // public void deleteImpression(Long id) throws EntityNotFoundException {}
 }
