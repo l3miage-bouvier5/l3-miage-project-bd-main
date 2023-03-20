@@ -8,11 +8,11 @@ import fr.uga.l3miage.photonum.data.domain.Image;
 
 @Mapper(componentModel = "spring")
 public interface ImageMapper {
-    ImageDTO entityToDTO(Image impression);
+    ImageDTO entityToDTO(Image image);
 
-    Collection<ImageDTO> entityToDTO(Iterable<Image> authors);
+    Collection<ImageDTO> entityToDTO(Iterable<Image> images);
 
-    Image dtoToEntity(ImageDTO impressionDTO);
+    Image dtoToEntity(ImageDTO imageDTO);
 
-    Collection<Image> dtoToEntity(Iterable<ImageDTO> authors);
+    Collection<Image> dtoToEntity(Iterable<ImageDTO> imagesDTO);
 }
