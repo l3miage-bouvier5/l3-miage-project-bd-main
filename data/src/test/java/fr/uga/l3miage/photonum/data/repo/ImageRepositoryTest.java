@@ -73,25 +73,19 @@ public class ImageRepositoryTest extends Base{
         Image i1 = Fixtures.newImage();
         Client c1 = Fixtures.newClient();
 
-        entityManager.persist(c1);
 
         i1.setProprietaireImage(c1);
 
 
         Image i2 = Fixtures.newImage();
         i2.setProprietaireImage(c1);
-
         Image i3 = Fixtures.newImage();
         i3.setProprietaireImage(Fixtures.newClient());
 
         entityManager.persist(i1);
         entityManager.persist(i2);
         entityManager.persist(i3);
-        entityManager.flush();
-        entityManager.detach(c1);
-        entityManager.detach(i1);
-        entityManager.detach(i2);
-        entityManager.detach(i3);
+
 
         List<Image> images = imageRepository.allClient(c1.getId());
         assertThat(images)

@@ -95,4 +95,11 @@ public class Fixtures {
         return commande;
     }
 
+    public static Image newImage() {
+        Image image = new Image();
+        image.setEstPartage(FAKER.random().nextBoolean());
+        image.setCheminAcces(FAKER.file().fileName());
+        return image;
+    }
+
 }
