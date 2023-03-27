@@ -35,7 +35,7 @@ class ImpressionRepositoryTest extends Base {
 
         List<Impression> impressions = impressionRepository.all();
         assertThat(impressions)
-                .hasSize(2);
+                .hasSize(2); 
     }
 
 }
