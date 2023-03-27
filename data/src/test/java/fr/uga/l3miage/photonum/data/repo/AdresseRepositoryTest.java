@@ -19,7 +19,7 @@ class AdresseRepositoryTest extends Base {
         Adresse a1 = Fixtures.newAdresse();
         a1.setVille("grenoble");
         Adresse a2 = Fixtures.newAdresse();
-        a1.setVille("paris?");
+        a1.setVille("paris");
         entityManager.persist(a1);
         entityManager.persist(a2);
         entityManager.flush();

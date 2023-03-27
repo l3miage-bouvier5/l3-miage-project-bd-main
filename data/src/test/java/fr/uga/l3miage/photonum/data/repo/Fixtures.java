@@ -29,15 +29,17 @@ public class Fixtures {
     public static Adresse newAdresse() {
         Adresse adresse = new Adresse();
         adresse.setCodePostal(Integer.parseInt(FAKER.address().zipCode()));
-        // adresse.setNomRue();
-        // adresse.setNumDePorte();
-        // adresse.setVille();
+        adresse.setNomRue(FAKER.address().streetName());
+        adresse.setNumDePorte((int)FAKER.number().randomNumber());
+        adresse.setVille(FAKER.address().city());
         return adresse;
     }
     
     public static Album newAlbum() {
         Album album = new Album();
-        // ...
+        album.setCouverture(null);
+        album.setDate(null);
+        album.setProprietaireImpression(null);
         return album;
     }
     
