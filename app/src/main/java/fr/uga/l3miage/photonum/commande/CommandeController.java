@@ -52,8 +52,6 @@ public class CommandeController {
         try{
             final var entity = commandeService.save(commandeMapper.dtoToEntity(commande));
             return commandeMapper.entityToDTO(entity);
-        } catch (EntityNotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
         } catch (IllegalArgumentException e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, null, e);
         }

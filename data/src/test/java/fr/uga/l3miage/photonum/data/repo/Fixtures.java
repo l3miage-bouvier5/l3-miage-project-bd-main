@@ -8,6 +8,7 @@ import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Page;
 
 import fr.uga.l3miage.photonum.data.domain.Client;
+import fr.uga.l3miage.photonum.data.domain.Commande;
 import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 
@@ -65,6 +66,17 @@ public class Fixtures {
         impr.setProprietaireImpression(client);
         impr.setDate(date);
         return impr;
+    }
+
+    public static Commande newCommande(){
+        Commande commande = new Commande();
+        commande.setDate(FAKER.date().birthday());
+
+        Random r = new Random();
+        float random = (float) (r.nextFloat() * 10.0);
+        commande.setPrixTotal(random);
+        commande.setValidee(FAKER.random().nextBoolean());
+        return commande;
     }
 
 }
