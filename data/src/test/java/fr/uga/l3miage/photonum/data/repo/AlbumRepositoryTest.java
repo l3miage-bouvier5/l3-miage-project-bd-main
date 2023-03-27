@@ -1,31 +1,40 @@
 package fr.uga.l3miage.photonum.data.repo;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
-class ImpressionRepositoryTest extends Base {
+import fr.uga.l3miage.photonum.data.domain.Album;
+
+
+class AlbumRepositoryTest extends Base {
 
     @Autowired
-    ImpressionRepository authorRepository;
+    AlbumRepository albumRepository;
 
     @Test
     void all() {
-        Adresse a1 = Fixtures.newAdresse();
-        a1.setVille("grenoble");
-        Adresse a2 = Fixtures.newAdresse();
-        a1.setVille("paris");
+        Album a1 = Fixtures.newAlbum();
+        a1.setTitreCouverture("mon anniversaire");
+        Album a2 = Fixtures.newAlbum();
+        a2.setTitreCouverture("mon dernier jour au lycée");
+        Album a3 = Fixtures.newAlbum();
+        a3.setTitreCouverture("mes souvenirs d'été");
         entityManager.persist(a1);
         entityManager.persist(a2);
         entityManager.flush();
         entityManager.detach(a1);
         entityManager.detach(a2);
 
-        List<Adresse> adresses = adresseRepository.all();
-        System.out.println(adresses);
-        assertThat(adresses.size() == 2);
-        assertThat(adresses.get(0)).isEqualTo(a1);
-        assertThat(adresses.get(1)).isEqualTo(a2);
+        List<Album> albums = albumRepository.all();
+        System.out.println(albums);
+        assertThat(albums.size() == 3);
+        assertThat(albums.get(0)).isEqualTo(a3);
+        assertThat(albums.get(1)).isEqualTo(a1);
+        assertThat(albums.get(2)).isEqualTo(a2);
     }
 
 }

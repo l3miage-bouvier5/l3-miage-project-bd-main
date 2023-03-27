@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.data.domain.Album;
 import fr.uga.l3miage.photonum.data.domain.Article;
+import fr.uga.l3miage.photonum.data.domain.Catalogue;
 import fr.uga.l3miage.photonum.data.domain.Page;
 import fr.uga.l3miage.photonum.data.domain.Photo;
 
@@ -45,16 +46,16 @@ public class Fixtures {
     
     public static Album newAlbum() {
         Album album = new Album();
-        album.setCouverture(new Photo());
         album.setDate(new Date());
-        album.setProprietaireImpression(new Client());
         album.setTitreCouverture(FAKER.book().title());
         return album;
     }
     
     public static Article newArticle() {
         Article article = new Article();
-        // ...
+        article.setPrix(Float.parseFloat(FAKER.commerce().price()));
+        article.setQuantite((int) FAKER.number().randomNumber());
+        article.setRef(FAKER.code().isbn10());    
         return article;
     }
     
