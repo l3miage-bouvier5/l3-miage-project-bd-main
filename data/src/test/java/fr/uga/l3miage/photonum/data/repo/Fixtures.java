@@ -6,7 +6,7 @@ import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.data.domain.Album;
 import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Page;
-
+import fr.uga.l3miage.photonum.data.domain.Photo;
 import fr.uga.l3miage.photonum.data.domain.Client;
 import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
@@ -65,6 +65,18 @@ public class Fixtures {
         impr.setProprietaireImpression(client);
         impr.setDate(date);
         return impr;
+    }
+
+    public static Photo newPhoto() {
+        Photo photo = new Photo();
+        photo.setAlbums(null);
+        photo.setParamRetoucheImg("null");
+        photo.setCadres(null);
+        photo.setImage(null);
+        photo.setPage(null);
+        photo.setTirages(null);
+
+        return photo;
     }
 
 }
