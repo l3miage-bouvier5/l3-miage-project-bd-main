@@ -24,6 +24,12 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 
+// import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+// import org.springframework.web.bind.annotation.*;
+// import org.springframework.web.server.ResponseStatusException;
+
+// import java.util.Collection;
 
 @RestController
 @RequestMapping(value = "/api/v1", produces = "application/json")
@@ -85,6 +91,8 @@ public class AdresseController {
             adresseService.delete(id);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, null, e);
         }
     }
 

@@ -2,10 +2,14 @@ package fr.uga.l3miage.photonum.data.repo;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import fr.uga.l3miage.photonum.data.domain.Commande;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Id;
 import jakarta.persistence.PersistenceContext;
 
+@Repository
 public class CommandeRepository implements CRUDRepository<Long, Commande> {
     
     @PersistenceContext
@@ -29,6 +33,6 @@ public class CommandeRepository implements CRUDRepository<Long, Commande> {
 
     @Override
     public List<Commande> all() {
-        return entityManager.createQuery("select c from Commande group by c.id", Commande.class).getResultList();
+        return entityManager.createQuery("select c from Commande c order by c.id", Commande.class).getResultList();
     }
 }
