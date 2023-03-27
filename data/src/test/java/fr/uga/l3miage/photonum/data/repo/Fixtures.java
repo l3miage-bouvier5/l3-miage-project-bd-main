@@ -8,13 +8,12 @@ import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Page;
 
 import fr.uga.l3miage.photonum.data.domain.Client;
+import fr.uga.l3miage.photonum.data.domain.Image;
 import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class Fixtures {
 
@@ -65,6 +64,14 @@ public class Fixtures {
         impr.setProprietaireImpression(client);
         impr.setDate(date);
         return impr;
+    }
+
+
+    public static Image newImage(){
+        Image img = new Image();
+        img.setCheminAcces(FAKER.file().fileName());
+        img.setEstPartage(FAKER.bool().bool());
+        return img;
     }
 
 }

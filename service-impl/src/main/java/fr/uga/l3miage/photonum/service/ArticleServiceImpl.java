@@ -12,7 +12,7 @@ import java.util.Collection;
 @Transactional
 public class ArticleServiceImpl implements ArticleService {
 
-    private final ArticleRepository rticleRepository;
+    private final ArticleRepository articleRepository;
 
     @Autowired
     public ArticleServiceImpl(ArticleRepository articleRepository) {

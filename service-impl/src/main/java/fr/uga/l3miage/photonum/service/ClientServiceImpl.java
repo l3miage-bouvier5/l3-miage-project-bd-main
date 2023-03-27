@@ -24,8 +24,12 @@ public class ClientServiceImpl implements ClientService {
     private final AdresseService adresseService;
 
     @Autowired
-    public ClientServiceImpl(ClientRepository clientRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository, ImpressionService impressionService, ImageService imageService, CommandeService commandeService, AdresseService adresseService) {
         this.clientRepository = clientRepository;
+        this.impressionService = impressionService;
+        this.imageService = imageService;
+        this.commandeService = commandeService;
+        this.adresseService = adresseService;
     }
 
     @Override
