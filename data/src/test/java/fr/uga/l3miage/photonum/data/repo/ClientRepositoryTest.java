@@ -6,17 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.uga.l3miage.photonum.data.domain.Client;
-import jakarta.persistence.EntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ClientRepositoryTest extends Base {
     
     @Autowired
     ClientRepository clientRepository;
-
-
-    @Autowired
-    EntityManager entityManager;
     
     @Test
     void all(){

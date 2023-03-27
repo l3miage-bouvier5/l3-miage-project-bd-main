@@ -20,6 +20,6 @@ public interface PhotoService extends BaseService<Photo, Long>{
      * @param id id of the photo to delete
      * @throws EntityNotFoundException when the entity do not already exists
      */
-    void delete(Long id);
+    void delete(Long id) throws EntityNotFoundException;
 
 }
