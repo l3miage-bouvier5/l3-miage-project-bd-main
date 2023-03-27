@@ -35,11 +35,6 @@ public class CommandeServiceImpl implements CommandeService {
         return commandeRepository.all();
     }
 
-    @Override
-    public Commande update(Commande object) throws EntityNotFoundException {
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
     // @Override
     // public Collection<Commande> searchById(String name) {
     //     throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
@@ -49,9 +44,14 @@ public class CommandeServiceImpl implements CommandeService {
     public void delete(Long id) throws EntityNotFoundException {
         Commande commande = get(id);
         if (commande == null) {
-            throw new EntityNotFoundException("impression with id=%d not found".formatted(id));
+            throw new EntityNotFoundException("command with id=%d not found".formatted(id));
         }
 
         commandeRepository.delete(commande);
+    }
+
+    @Override
+    public Commande update(Commande object) throws EntityNotFoundException {
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 }

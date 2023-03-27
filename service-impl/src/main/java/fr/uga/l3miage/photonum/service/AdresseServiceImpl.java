@@ -40,4 +40,11 @@ public class AdresseServiceImpl implements AdresseService {
         return adresseRepository.save(object);
     }
 
+
+    @Override
+    public void delete(Long id) throws EntityNotFoundException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
 }

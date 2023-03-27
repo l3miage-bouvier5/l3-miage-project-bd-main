@@ -3,18 +3,21 @@ package fr.uga.l3miage.photonum.data.repo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import jakarta.persistence.EntityManager;
+import fr.uga.l3miage.photonum.data.domain.Commande;
 
 public class CommandeRepositoryTest extends Base {
     
     @Autowired
     CommandeRepository commandeRepository;
 
-    @Autowired
-    EntityManager entityManager;
-
     @Test
     void all(){
-        //TODO A COMPLETER (svp laissez moi m'en occuper bisous, Vincent)
+       Commande c1 = Fixtures.newCommande();
+       Commande c2 = Fixtures.newCommande();
+       Commande c3 = Fixtures.newCommande();
+
+        entityManager.persist(c1);
+        entityManager.persist(c2);
+        entityManager.persist(c3);
     }
 }

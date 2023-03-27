@@ -99,6 +99,12 @@ public class Image {
 
         return otherImage.getCheminAcces().equals(this.cheminAcces);
     }
-
     
+    public Client getProprietaireImage() {
+        return proprietaireImage;
+    }
+
+    public void setProprietaireImage(Client proprietaireImage) {
+        this.proprietaireImage = proprietaireImage;
+    }
 }

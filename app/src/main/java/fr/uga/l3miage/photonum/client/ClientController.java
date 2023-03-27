@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,7 +20,6 @@ import org.springframework.web.server.ResponseStatusException;
 import fr.uga.l3miage.photonum.commande.CommandeDTO;
 import fr.uga.l3miage.photonum.commande.CommandeMapper;
 import fr.uga.l3miage.photonum.data.domain.Client;
-import fr.uga.l3miage.photonum.data.domain.Commande;
 import fr.uga.l3miage.photonum.service.ClientService;
 import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -35,9 +33,10 @@ public class ClientController {
     private final CommandeMapper commandeMapper;
 
     @Autowired
-    public ClientController(ClientMapper clientMapper, ClientService clientService){
+    public ClientController(ClientMapper clientMapper, ClientService clientService, CommandeMapper commandeMapper){
         this.clientService  = clientService;
         this.clientMapper = clientMapper;
+        this.commandeMapper = commandeMapper;
     }
     @GetMapping("/clients")
     public Collection<ClientDTO> clients() {
@@ -50,6 +49,7 @@ public class ClientController {
     }
 
     @GetMapping("/clients/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ClientDTO author(@PathVariable("id") @NotNull Long id) {
         try {
             return clientMapper.entityToDTO(clientService.get(id));
@@ -101,3 +101,4 @@ public class ClientController {
         }
     }
 }
+

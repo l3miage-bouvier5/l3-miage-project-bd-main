@@ -5,16 +5,19 @@ import com.github.javafaker.Faker;
 import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.data.domain.Album;
 import fr.uga.l3miage.photonum.data.domain.Article;
+import fr.uga.l3miage.photonum.data.domain.Catalogue;
 import fr.uga.l3miage.photonum.data.domain.Page;
+import fr.uga.l3miage.photonum.data.domain.Photo;
 
+import fr.uga.l3miage.photonum.data.domain.Photo;
 import fr.uga.l3miage.photonum.data.domain.Client;
+import fr.uga.l3miage.photonum.data.domain.Commande;
+import fr.uga.l3miage.photonum.data.domain.Image;
 import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class Fixtures {
 
@@ -29,21 +32,35 @@ public class Fixtures {
     public static Adresse newAdresse() {
         Adresse adresse = new Adresse();
         adresse.setCodePostal(Integer.parseInt(FAKER.address().zipCode()));
-        // adresse.setNomRue();
-        // adresse.setNumDePorte();
-        // adresse.setVille();
+        adresse.setNomRue(FAKER.address().streetName());
+        adresse.setNumDePorte((int) FAKER.number().randomNumber());
+        adresse.setVille(FAKER.address().city());
         return adresse;
+    }
+
+    public static Photo newPhoto() {
+        Photo photo = new Photo();
+        photo.setTexteDescriptif(FAKER.lorem().sentence());
+        photo.setAlbums(null);
+        photo.setCadres(null);
+        photo.setPage(null);
+        photo.setTirages(null);
+        photo.setParamRetoucheImg("param");
+        return photo;
     }
     
     public static Album newAlbum() {
         Album album = new Album();
-        // ...
+        album.setDate(new Date());
+        album.setTitreCouverture(FAKER.book().title());
         return album;
     }
     
     public static Article newArticle() {
         Article article = new Article();
-        // ...
+        article.setPrix(Float.parseFloat(FAKER.commerce().price()));
+        article.setQuantite((int) FAKER.number().randomNumber());
+        article.setRef(FAKER.code().isbn10());    
         return article;
     }
     
@@ -60,11 +77,22 @@ public class Fixtures {
         return client;
     }
 
-    public static Impression newImpression(Client client, Date date, Article... articles){
+    public static Impression newImpression(Client client, Date date, Article... articles) {
         Impression impr = new Impression();
         impr.setProprietaireImpression(client);
         impr.setDate(date);
         return impr;
+    }
+
+    public static Commande newCommande(){
+        Commande commande = new Commande();
+        commande.setDate(FAKER.date().birthday());
+
+        Random r = new Random();
+        float random = (float) (r.nextFloat() * 10.0);
+        commande.setPrixTotal(random);
+        commande.setValidee(FAKER.random().nextBoolean());
+        return commande;
     }
 
 }
