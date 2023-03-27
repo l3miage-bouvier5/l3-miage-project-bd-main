@@ -25,16 +25,21 @@ class ArticleRepositoryTest extends Base {
         a3.setId(Long.valueOf(13));
         entityManager.persist(a1);
         entityManager.persist(a2);
+        entityManager.persist(a3);
         entityManager.flush();
         entityManager.detach(a1);
         entityManager.detach(a2);
+        entityManager.detach(a3);
 
         List<Article> articles = articleRepository.all();
-        System.out.println(articles);
         assertThat(articles.size() == 3);
         assertThat(articles.get(0)).isEqualTo(a3);
         assertThat(articles.get(1)).isEqualTo(a2);
         assertThat(articles.get(2)).isEqualTo(a1);
+        assertThat(articles)
+                .hasSize(3)
+                .extracting("id")
+                .containsExactly(13, 78, 120);
     }
 
 }

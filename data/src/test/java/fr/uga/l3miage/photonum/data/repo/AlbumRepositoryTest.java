@@ -25,16 +25,17 @@ class AlbumRepositoryTest extends Base {
         a3.setTitreCouverture("mes souvenirs d'été");
         entityManager.persist(a1);
         entityManager.persist(a2);
+        entityManager.persist(a3);
         entityManager.flush();
         entityManager.detach(a1);
         entityManager.detach(a2);
+        entityManager.detach(a3);
 
         List<Album> albums = albumRepository.all();
-        System.out.println(albums);
-        assertThat(albums.size() == 3);
-        assertThat(albums.get(0)).isEqualTo(a3);
-        assertThat(albums.get(1)).isEqualTo(a1);
-        assertThat(albums.get(2)).isEqualTo(a2);
+        assertThat(albums)
+                .hasSize(3)
+                .extracting("titreCouverture")
+                .containsExactly("mes souvenirs d'été", "mon anniversaire", "mon dernier jour au lycée");
     }
 
 }
