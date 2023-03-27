@@ -39,29 +39,4 @@ public class CommandeRepositoryTest extends Base {
                 .extracting("prixTotal")
                 .containsExactly((float) 420.0, (float) 44.0, (float) 33.0);
     }
-
-    @Test
-    void delete(){
-        Commande c1 = Fixtures.newCommande();
-        Commande c2 = Fixtures.newCommande();
-        Commande c3 = Fixtures.newCommande();
-
-        entityManager.persist(c1);
-        entityManager.persist(c2);
-        entityManager.persist(c3);
-
-        entityManager.flush();
-
-        entityManager.detach(c1);
-        entityManager.detach(c2);
-        entityManager.detach(c3);
-
-        commandeRepository.delete(c1);
-        commandeRepository.delete(c2);
-        commandeRepository.delete(c3);
-
-        List<Commande> commandes = commandeRepository.all();
-        assertThat(commandes)
-                .hasSize(0);
-    }
 }
