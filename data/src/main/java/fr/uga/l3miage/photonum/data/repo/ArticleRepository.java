@@ -32,7 +32,7 @@ public class ArticleRepository implements CRUDRepository<Long, Article> {
 
 
     /**
-     * Renvoie toutes les articles
+     * Renvoie tous les articles
      *
      * @return une liste d'articles trié par id
      */
@@ -40,5 +40,9 @@ public class ArticleRepository implements CRUDRepository<Long, Article> {
     public List<Article> all() {
         return entityManager.createQuery("select a from Article a order by a.id", Article.class).getResultList();
     }
+
+
+
+ 
 
 }
