@@ -17,9 +17,9 @@ class AdresseRepositoryTest extends Base {
     @Test
     void all() {
         Adresse a1 = Fixtures.newAdresse();
-        a1.setVille("grenoble");
+        a1.setVille("paris");
         Adresse a2 = Fixtures.newAdresse();
-        a1.setVille("paris?");
+        a2.setVille("grenoble");
         entityManager.persist(a1);
         entityManager.persist(a2);
         entityManager.flush();
@@ -29,8 +29,8 @@ class AdresseRepositoryTest extends Base {
         List<Adresse> adresses = adresseRepository.all();
         System.out.println(adresses);
         assertThat(adresses.size() == 2);
-        assertThat(adresses.get(0)).isEqualTo(a1);
-        assertThat(adresses.get(1)).isEqualTo(a2);
+        assertThat(adresses.get(0)).isEqualTo(a2);
+        assertThat(adresses.get(1)).isEqualTo(a1);
     }
 
 }

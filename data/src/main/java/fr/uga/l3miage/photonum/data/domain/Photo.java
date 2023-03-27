@@ -12,6 +12,7 @@ public class Photo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "texte_descriptif")
     private String texteDescriptif;
     // this is optional
 
@@ -35,10 +36,6 @@ public class Photo {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTexteDescriptif() {

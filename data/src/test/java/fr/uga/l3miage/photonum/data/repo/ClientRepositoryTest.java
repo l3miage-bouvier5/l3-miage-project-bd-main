@@ -17,6 +17,7 @@ public class ClientRepositoryTest extends Base {
 
     @Autowired
     EntityManager entityManager;
+    
     @Test
     void all(){
         Client c1 = Fixtures.newClient();
