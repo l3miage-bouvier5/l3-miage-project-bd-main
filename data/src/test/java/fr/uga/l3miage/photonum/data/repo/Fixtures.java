@@ -6,6 +6,8 @@ import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.data.domain.Album;
 import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Page;
+import fr.uga.l3miage.photonum.data.domain.Photo;
+
 
 import fr.uga.l3miage.photonum.data.domain.Client;
 import fr.uga.l3miage.photonum.data.domain.Impression;
@@ -30,16 +32,23 @@ public class Fixtures {
         Adresse adresse = new Adresse();
         adresse.setCodePostal(Integer.parseInt(FAKER.address().zipCode()));
         adresse.setNomRue(FAKER.address().streetName());
-        adresse.setNumDePorte((int)FAKER.number().randomNumber());
+        adresse.setNumDePorte((int) FAKER.number().randomNumber());
         adresse.setVille(FAKER.address().city());
         return adresse;
+    }
+
+    public static Photo newPhoto() {
+        Photo photo = new Photo();
+        // ...
+        return photo;
     }
     
     public static Album newAlbum() {
         Album album = new Album();
-        album.setCouverture(null);
-        album.setDate(null);
-        album.setProprietaireImpression(null);
+        album.setCouverture(new Photo());
+        album.setDate(new Date());
+        album.setProprietaireImpression(new Client());
+        album.setTitreCouverture(FAKER.book().title());
         return album;
     }
     
@@ -62,11 +71,12 @@ public class Fixtures {
         return client;
     }
 
-    public static Impression newImpression(Client client, Date date, Article... articles){
+    public static Impression newImpression(Client client, Date date, Article... articles) {
         Impression impr = new Impression();
         impr.setProprietaireImpression(client);
         impr.setDate(date);
         return impr;
     }
+
 
 }
