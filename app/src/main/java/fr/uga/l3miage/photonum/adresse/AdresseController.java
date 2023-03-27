@@ -2,7 +2,6 @@ package fr.uga.l3miage.photonum.adresse;
 
 import java.util.Collection;
 
-import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,7 +35,7 @@ import jakarta.validation.constraints.NotNull;
 // import org.springframework.web.bind.annotation.RequestParam;
 
 // import org.springframework.http.HttpStatus;
-// import org.springframework.http.MediaType;
+import org.springframework.http.MediaType;
 // import org.springframework.web.bind.annotation.*;
 // import org.springframework.web.server.ResponseStatusException;
 
@@ -102,7 +101,7 @@ public class AdresseController {
             adresseService.delete(id);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
-        } catch (DeleteAdresseException e) {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, null, e);
         }
     }
