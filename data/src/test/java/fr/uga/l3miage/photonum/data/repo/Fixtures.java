@@ -40,7 +40,12 @@ public class Fixtures {
 
     public static Photo newPhoto() {
         Photo photo = new Photo();
-        // ...
+        photo.setTexteDescriptif(FAKER.lorem().sentence());
+        photo.setAlbums(null);
+        photo.setCadres(null);
+        photo.setPage(null);
+        photo.setTirages(null);
+        photo.setParamRetoucheImg("param");
         return photo;
     }
     
