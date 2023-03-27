@@ -9,13 +9,13 @@ import fr.uga.l3miage.photonum.data.domain.Catalogue;
 import fr.uga.l3miage.photonum.data.domain.Page;
 import fr.uga.l3miage.photonum.data.domain.Photo;
 import fr.uga.l3miage.photonum.data.domain.Client;
+import fr.uga.l3miage.photonum.data.domain.Commande;
+import fr.uga.l3miage.photonum.data.domain.Image;
 import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class Fixtures {
 
@@ -38,7 +38,12 @@ public class Fixtures {
 
     public static Photo newPhoto() {
         Photo photo = new Photo();
-        // ...
+        photo.setTexteDescriptif(FAKER.lorem().sentence());
+        photo.setAlbums(null);
+        photo.setCadres(null);
+        photo.setPage(null);
+        photo.setTirages(null);
+        photo.setParamRetoucheImg("param");
         return photo;
     }
     
@@ -74,6 +79,24 @@ public class Fixtures {
         impr.setProprietaireImpression(client);
         impr.setDate(date);
         return impr;
+    }
+
+    public static Commande newCommande(){
+        Commande commande = new Commande();
+        commande.setDate(FAKER.date().birthday());
+
+        Random r = new Random();
+        float random = (float) (r.nextFloat() * 10.0);
+        commande.setPrixTotal(random);
+        commande.setValidee(FAKER.random().nextBoolean());
+        return commande;
+    }
+
+    public static Image newImage() {
+        Image image = new Image();
+        image.setEstPartage(FAKER.random().nextBoolean());
+        image.setCheminAcces(FAKER.file().fileName());
+        return image;
     }
 
 }
