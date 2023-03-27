@@ -2,9 +2,9 @@ package fr.uga.l3miage.photonum.adresse;
 
 import java.util.Collection;
 
-import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,20 +23,9 @@ import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
-// import fr.uga.l3miage.photonum.data.domain.Adresse;
-// // import fr.uga.l3miage.library.books.BookDTO;
-// // import fr.uga.l3miage.library.books.BooksMapper;
-// // import fr.uga.l3miage.photonum.service.AdresseService;
-// // import fr.uga.l3miage.library.service.DeleteAdresseException;
-// // import fr.uga.l3miage.library.service.EntityNotFoundException;
-// import jakarta.validation.Valid;
-// import jakarta.validation.constraints.NotNull;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
 
 // import org.springframework.http.HttpStatus;
-// import org.springframework.http.MediaType;
+import org.springframework.http.MediaType;
 // import org.springframework.web.bind.annotation.*;
 // import org.springframework.web.server.ResponseStatusException;
 
@@ -102,7 +91,7 @@ public class AdresseController {
             adresseService.delete(id);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
-        } catch (DeleteAdresseException e) {
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, null, e);
         }
     }

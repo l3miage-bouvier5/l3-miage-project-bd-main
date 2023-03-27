@@ -1,6 +1,7 @@
 package fr.uga.l3miage.photonum.service;
 
 import fr.uga.l3miage.photonum.data.domain.Photo;
+import fr.uga.l3miage.photonum.data.repo.PhotoRepository;
 //import fr.uga.l3miage.photonum.data.repo.PhotoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,34 +15,42 @@ import java.util.Collection;
 
 public class PhotoServiceImpl implements PhotoService {
 
+
+    private final PhotoRepository photoRepository;
+
+    @Autowired
+    public PhotoServiceImpl(PhotoRepository photoRepository) {
+        this.photoRepository = photoRepository;
+    }
+    
     @Override
     public Photo get(Long id) throws EntityNotFoundException {
-        // TODO Auto-generated method stub
+        
         throw new UnsupportedOperationException("Unimplemented method 'get'");
     }
 
     @Override
     public Collection<Photo> list() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'list'");
+        return photoRepository.all();
     }
 
     @Override
     public Photo update(Photo object) throws EntityNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        return photoRepository.save(object);
     }
 
     @Override
     public Photo save(Photo photo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
-    }
+        return photoRepository.save(photo);    }
 
     @Override
-    public Collection<Photo> SeachByName(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'SeachByName'");
+    public void delete(Long id) throws EntityNotFoundException {
+        Photo photo = get(id);
+        if (photo == null) {
+            throw new EntityNotFoundException("photo with id=%d not found".formatted(id));
+        }
+
+        photoRepository.delete(photo);
     }
     
 }

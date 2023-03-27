@@ -8,8 +8,6 @@ import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Catalogue;
 import fr.uga.l3miage.photonum.data.domain.Page;
 import fr.uga.l3miage.photonum.data.domain.Photo;
-
-import fr.uga.l3miage.photonum.data.domain.Photo;
 import fr.uga.l3miage.photonum.data.domain.Client;
 import fr.uga.l3miage.photonum.data.domain.Commande;
 import fr.uga.l3miage.photonum.data.domain.Image;
@@ -32,7 +30,7 @@ public class Fixtures {
 
     public static Adresse newAdresse() {
         Adresse adresse = new Adresse();
-        adresse.setCodePostal(Integer.parseInt(FAKER.address().zipCode()));
+        adresse.setCodePostal(Integer.parseInt(FAKER.address().zipCode().replaceAll("-", "")));
         adresse.setNomRue(FAKER.address().streetName());
         adresse.setNumDePorte((int) FAKER.number().randomNumber());
         adresse.setVille(FAKER.address().city());
@@ -52,7 +50,7 @@ public class Fixtures {
     
     public static Album newAlbum() {
         Album album = new Album();
-        album.setDate(new Date());
+        album.setDate(FAKER.date().birthday());
         album.setTitreCouverture(FAKER.book().title());
         return album;
     }
@@ -67,7 +65,6 @@ public class Fixtures {
     
         public static Page newPage() {
         Page page = new Page();
-        // ...
         return page;
     }
 

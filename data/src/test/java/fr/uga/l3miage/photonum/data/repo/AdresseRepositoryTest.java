@@ -27,7 +27,6 @@ class AdresseRepositoryTest extends Base {
         entityManager.detach(a2);
 
         List<Adresse> adresses = adresseRepository.all();
-        System.out.println(adresses);
         assertThat(adresses.size() == 2);
         assertThat(adresses.get(0)).isEqualTo(a2);
         assertThat(adresses.get(1)).isEqualTo(a1);

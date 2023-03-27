@@ -10,6 +10,7 @@ import fr.uga.l3miage.photonum.data.domain.Tirage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
+
 class TirageRepositoryTest extends Base {
 
     @Autowired
@@ -37,7 +38,6 @@ class TirageRepositoryTest extends Base {
         assertThat(tirages)
                 .hasSize(3);
                 
-
     }
 
 }
