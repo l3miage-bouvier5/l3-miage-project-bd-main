@@ -33,10 +33,6 @@ public class Image {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getInfoPriseDeVue() {
         return infoPriseDeVue;
     }
@@ -66,7 +62,11 @@ public class Image {
     }
 
     public void setEstPartage(Boolean p) {
-        estPartage = p;
+        if(estPartage){
+            throw new IllegalArgumentException("L'image est déjà partagée");
+        }else{
+            estPartage = p;
+        }
     }
 
     public Client getClient() {

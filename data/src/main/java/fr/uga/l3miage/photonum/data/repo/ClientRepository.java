@@ -33,5 +33,7 @@ public class ClientRepository implements CRUDRepository<Long, Client> {
     public List<Client> all() {
         return this.entityManager.createQuery("from Client c order by c.nom",Client.class).getResultList();
     }
+
+    
     
 }

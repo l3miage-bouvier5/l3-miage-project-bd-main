@@ -8,5 +8,8 @@ public interface ArticleService extends BaseService<Article, Long> {
 
     Article save(Article article);
 
+    Article get(Long id) throws EntityNotFoundException;
+
+    
 
 }

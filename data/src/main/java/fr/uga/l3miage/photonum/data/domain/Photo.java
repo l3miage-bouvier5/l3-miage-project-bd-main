@@ -2,6 +2,7 @@ package fr.uga.l3miage.photonum.data.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -107,5 +108,19 @@ public class Photo {
         Photo otherPhoto = (Photo) other;
         return otherPhoto.getImage().equals(this.image)
         && otherPhoto.getParamRetoucheImg().equals(this.paramRetoucheImg);
+    }
+
+
+    public List<Impression> getImpressions(){
+        List<Impression> impressions = new ArrayList<>();
+        impressions.addAll(this.getAlbums());
+        impressions.addAll(this.getCadres());
+        impressions.addAll(this.getTirages());
+        for(Page p : this.getPage()){
+            impressions.addAll(p.getCalendriers());
+            impressions.addAll(p.getAlbums());
+        }
+        return impressions;
+        
     }
 }
