@@ -1,5 +1,7 @@
 package fr.uga.l3miage.photonum.data.repo;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,7 +9,6 @@ import fr.uga.l3miage.photonum.data.domain.Tirage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 
 
 class TirageRepositoryTest extends Base {
@@ -17,20 +18,26 @@ class TirageRepositoryTest extends Base {
 
     @Test
     void all() {
-        Tirage a1 = Fixtures.newTirage();
-        Tirage a2 = Fixtures.newTirage();
-        Tirage a3 = Fixtures.newTirage();
-        entityManager.persist(a1);
-        entityManager.persist(a2);
-        entityManager.persist(a3);
+        
+        Tirage t1 = Fixtures.newTirage();
+
+        Tirage t2 = Fixtures.newTirage();
+
+        Tirage t3= Fixtures.newTirage();
+
+        entityManager.persist(t1);
+        entityManager.persist(t2);
+        entityManager.persist(t3);
+
         entityManager.flush();
-        entityManager.detach(a1);
-        entityManager.detach(a2);
-        entityManager.detach(a3);
+        entityManager.detach(t1);
+        entityManager.detach(t2);
+        entityManager.detach(t3);
 
         List<Tirage> tirages = tirageRepository.all();
-        System.out.println(tirages);
-        assertThat(tirages.size() == 3);
+        assertThat(tirages)
+                .hasSize(3);
+                
     }
 
 }

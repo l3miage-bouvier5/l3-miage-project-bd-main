@@ -70,10 +70,13 @@ public class ImageRepositoryTest extends Base{
 
     @Test
     void allClient(){
-        Image i1 = Fixtures.newImage();
+        
         Client c1 = Fixtures.newClient();
 
+        c1.setNom("Adrien");
+        entityManager.persist(c1);
 
+        Image i1 = Fixtures.newImage();
         i1.setProprietaireImage(c1);
 
 

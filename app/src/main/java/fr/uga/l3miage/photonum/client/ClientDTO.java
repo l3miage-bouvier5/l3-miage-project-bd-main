@@ -8,7 +8,6 @@ public record ClientDTO(
     String adresseMail,
     @NotBlank(message = "le nom doit exister")
     String nom,
-    String prenoms,
     @NotBlank(message = "L'utilisateur doit avoir un mdp")
     String motDePasse
 ) {

@@ -4,8 +4,6 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-// TODO : faire le addAdressePostale pour ajouter une adresse à un client
-
 
 @Entity
 @Table(name = "Client")
@@ -61,9 +59,6 @@ public class Client {
     }
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 
     public String getAdresseMail() {

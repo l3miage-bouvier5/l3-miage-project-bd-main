@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 import fr.uga.l3miage.photonum.data.domain.Photo;
 
 
-
 import java.util.Collection;
 
+@Service
+@Transactional
 public class PhotoServiceImpl implements PhotoService {
 
 
