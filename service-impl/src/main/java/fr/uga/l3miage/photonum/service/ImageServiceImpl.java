@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.uga.l3miage.photonum.data.domain.Album;
 import fr.uga.l3miage.photonum.data.domain.Cadre;
@@ -13,7 +14,11 @@ import fr.uga.l3miage.photonum.data.domain.Page;
 import fr.uga.l3miage.photonum.data.domain.Photo;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 import fr.uga.l3miage.photonum.data.repo.ImageRepository;
+import jakarta.transaction.Transactional;
 
+
+@Service
+@Transactional
 public class ImageServiceImpl implements ImageService {
 
     private final ImageRepository imageRepository;

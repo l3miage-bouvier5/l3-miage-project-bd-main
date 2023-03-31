@@ -25,11 +25,11 @@ public class ClientServiceImpl implements ClientService {
 
     @Autowired
     public ClientServiceImpl(ClientRepository clientRepository, ImpressionService impressionService, ImageService imageService, CommandeService commandeService, AdresseService adresseService) {
-        this.clientRepository = clientRepository;
         this.impressionService = impressionService;
         this.imageService = imageService;
         this.commandeService = commandeService;
         this.adresseService = adresseService;
+        this.clientRepository = clientRepository;
     }
 
     @Override
