@@ -80,7 +80,7 @@ public class AdresseController {
             }
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e) {
-           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "adresse is not found", e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "adresse is not found", e);
         }
     }
 

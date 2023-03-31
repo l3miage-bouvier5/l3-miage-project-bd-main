@@ -115,9 +115,7 @@ public class Client {
 
         Client otherClient = (Client) other;
 
-        return otherClient.getNom().equals(this.nom) 
-        && otherClient.getPrenoms().equals(this.prenoms)
-        && otherClient.getAdressesPostales().equals(this.adressesPostales); 
+        return otherClient.adresseMail.equals(this.adresseMail); 
     }
 
     public List<Commande> getCommandes() {
