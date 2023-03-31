@@ -23,7 +23,8 @@ public class Fixtures {
 
     public static Tirage newTirage() {
         Tirage tirage = new Tirage();
-        tirage.setDate(FAKER.date().birthday());
+        tirage.setDate(new Date());
+        tirage.setPhotos(null);
         return tirage;
     }
 
