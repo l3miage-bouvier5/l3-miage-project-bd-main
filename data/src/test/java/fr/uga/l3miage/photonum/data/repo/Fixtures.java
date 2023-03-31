@@ -64,6 +64,9 @@ public class Fixtures {
     
         public static Page newPage() {
         Page page = new Page();
+        page.setAlbums(null);
+        page.setCalendriers(null);
+        page.setPhotos(null);
         return page;
     }
 
@@ -84,7 +87,6 @@ public class Fixtures {
     public static Commande newCommande(){
         Commande commande = new Commande();
         commande.setDate(FAKER.date().birthday());
-
         Random r = new Random();
         float random = (float) (r.nextFloat() * 10.0);
         commande.setPrixTotal(random);

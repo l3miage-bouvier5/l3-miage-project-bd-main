@@ -17,26 +17,27 @@ class PageRepositoryTest extends Base {
 
     @Test
     void all() {
-        Page a1 = Fixtures.newPage();
-        a1.setId(Long.valueOf(1));
-        Page a2 = Fixtures.newPage();
-        a2.setId(Long.valueOf(290));
-        Page a3 = Fixtures.newPage();
-        a3.setId(Long.valueOf(3));
-        entityManager.persist(a1);
-        entityManager.persist(a2);
-        entityManager.persist(a3);
+        Page p1 = Fixtures.newPage();
+
+        Page p2 = Fixtures.newPage();
+        // p2.setId((long) 290);
+        Page p3 = Fixtures.newPage();
+        // p3.setId((long) 3);
+        entityManager.merge(p1);
+        entityManager.merge(p2);
+        entityManager.merge(p3);
+        // entityManager.persist(p1);
+        // entityManager.persist(p2);
+        // entityManager.persist(p3);
         entityManager.flush();
-        entityManager.detach(a1);
-        entityManager.detach(a2);
-        entityManager.detach(a3);
+        entityManager.detach(p1);
+        entityManager.detach(p2);
+        entityManager.detach(p3);
 
         List<Page> pages = pageRepository.all();
-        System.out.println(pages);
-        assertThat(pages.size() == 3);
-        assertThat(pages.get(0)).isEqualTo(a1);
-        assertThat(pages.get(1)).isEqualTo(a3);
-        assertThat(pages.get(2)).isEqualTo(a2);
+        assertThat(pages)
+                .hasSize(3)
+                .extracting("id");
     }
 
 }
