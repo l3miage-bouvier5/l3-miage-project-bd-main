@@ -61,7 +61,7 @@ public class ClientServiceImpl implements ClientService {
 
         
         List<Impression> impressions= client.getImpressions();
-        if(impressions != null ){
+        if(impressions.size() != 0 ){
             for (Impression impr : impressions){
                 impressionService.delete(impr.getId());
             }
@@ -69,7 +69,7 @@ public class ClientServiceImpl implements ClientService {
 
         List<Image> images = client.getImages();
 
-        if(images != null){
+        if(images.size() != 0){
             for(Image im : images){
                 imageService.delete(im.getId());
             }
@@ -77,7 +77,7 @@ public class ClientServiceImpl implements ClientService {
 
         List<Commande> commandes = client.getCommandes();
 
-        if(commandes != null){
+        if(commandes.size() != 0){
             for(Commande co : commandes){
                 commandeService.delete(co.getId());
             }
@@ -86,7 +86,7 @@ public class ClientServiceImpl implements ClientService {
 
         List<Adresse> adresses = client.getAdressesPostales();
 
-        if(adresses != null){
+        if(adresses.size() != 0){
             for(Adresse ad: adresses){
                 adresseService.delete(ad.getId());
             }
