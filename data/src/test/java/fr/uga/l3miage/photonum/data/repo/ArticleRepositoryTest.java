@@ -9,11 +9,7 @@ import fr.uga.l3miage.photonum.data.domain.Article;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-
-import fr.uga.l3miage.photonum.data.domain.Article;
 import jakarta.persistence.EntityManager;
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class ArticleRepositoryTest extends Base {

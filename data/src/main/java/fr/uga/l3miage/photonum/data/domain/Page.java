@@ -23,10 +23,6 @@ public class Page {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public List<Photo> getPhotos() {
         return photos;
     }
