@@ -15,8 +15,6 @@ public class Catalogue {
 
     float prix;
 
-    TypeImpression typeImpression;
-
     Format format;
 
     Qualite qualite;
@@ -32,12 +30,6 @@ public class Catalogue {
     }
     public void setPrix(float prix) {
         this.prix = prix;
-    }
-    public TypeImpression getTypeImpression() {
-        return typeImpression;
-    }
-    public void setTypeImpression(TypeImpression typeImpression) {
-        this.typeImpression = typeImpression;
     }
     public Format getFormat() {
         return format;

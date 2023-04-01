@@ -5,7 +5,7 @@ import fr.uga.l3miage.photonum.service.base.BaseService;
 
 public interface ClientService extends BaseService<Client, Long> {
 
-    Client save(Client impression);
+    Client save(Client client);
 
     void delete(Long id) throws EntityNotFoundException;
 
