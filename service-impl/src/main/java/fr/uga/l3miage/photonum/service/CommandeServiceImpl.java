@@ -5,7 +5,9 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.uga.l3miage.photonum.data.domain.Client;
 import fr.uga.l3miage.photonum.data.domain.Commande;
+import fr.uga.l3miage.photonum.data.repo.ClientRepository;
 import fr.uga.l3miage.photonum.data.repo.CommandeRepository;
 import jakarta.transaction.Transactional;
 
@@ -14,15 +16,19 @@ import jakarta.transaction.Transactional;
 public class CommandeServiceImpl implements CommandeService {
     
     private final CommandeRepository commandeRepository;
+    private final ClientRepository clientRepository;
 
     @Autowired
-    public CommandeServiceImpl(CommandeRepository commandeRepository) {
+    public CommandeServiceImpl(CommandeRepository commandeRepository, ClientRepository clientRepository) {
         this.commandeRepository = commandeRepository;
+        this.clientRepository = clientRepository;
     }
 
     @Override
-    public Commande save(Commande commande) {
-        return commandeRepository.save(commande);
+    public Commande save(Long id, Commande commande) throws EntityNotFoundException {
+        commandeRepository.save(commande);
+        bind(id, commande);
+        return commande;
     }
 
     @Override
@@ -34,11 +40,6 @@ public class CommandeServiceImpl implements CommandeService {
     public Collection<Commande> list() {
         return commandeRepository.all();
     }
-
-    // @Override
-    // public Collection<Commande> searchById(String name) {
-    //     throw new UnsupportedOperationException("Unimplemented method 'searchByName'");
-    // }
 
     @Override
     public void delete(Long id) throws EntityNotFoundException {
@@ -54,4 +55,15 @@ public class CommandeServiceImpl implements CommandeService {
     public Commande update(Commande object) throws EntityNotFoundException {
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
+
+
+    public void bind(Long id, Commande commande) throws EntityNotFoundException {
+        Client client = clientRepository.get(id);
+        if (client == null) {
+            throw new EntityNotFoundException("client with id=%d not found".formatted(id));
+        }
+        client.addCommande(commande);
+        commande.setClient(client);
+    }
+
 }

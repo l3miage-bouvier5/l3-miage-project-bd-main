@@ -1,6 +1,7 @@
 package fr.uga.l3miage.photonum.adresse;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record AdresseDTO(
     Long id,
@@ -12,7 +13,7 @@ public record AdresseDTO(
 
     String ville,
 
-    @NotBlank(message = "postal code of the adress is mandatory")
+    @NotNull(message = "postal code of the adress is mandatory")
     int codePostal
     
 ) {
