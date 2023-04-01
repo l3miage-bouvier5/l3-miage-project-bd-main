@@ -5,8 +5,6 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-// TODO : faire le addClient pour ajouter un client à une adresse
-
 @Entity
 @Table(name = "Adresse")
 public class Adresse {

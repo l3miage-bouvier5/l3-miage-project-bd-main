@@ -21,17 +21,6 @@ public class Catalogue {
 
     Qualite qualite;
 
-    @Override
-    public boolean equals(Object other){
-        if(!(other instanceof Catalogue) || other == null){
-            return false;
-        }
-
-        Catalogue otherCatalogue = (Catalogue) other;
-
-        //TODO!!!!!!!!!!!!!!!!!!!
-        return false;
-    }
     public Long getId() {
         return id;
     }

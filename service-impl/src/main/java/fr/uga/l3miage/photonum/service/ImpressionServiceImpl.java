@@ -1,6 +1,8 @@
 package fr.uga.l3miage.photonum.service;
 
+import fr.uga.l3miage.photonum.data.domain.Client;
 import fr.uga.l3miage.photonum.data.domain.Impression;
+import fr.uga.l3miage.photonum.data.repo.ClientRepository;
 import fr.uga.l3miage.photonum.data.repo.ImpressionRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,17 +14,22 @@ import java.util.Collection;
 @Transactional
 public class ImpressionServiceImpl implements ImpressionService {
 
+
+    private final ClientRepository clientRepository;
     private final ImpressionRepository impressionRepository;
 
     @Autowired
-    public ImpressionServiceImpl(ImpressionRepository impressionRepository) {
+    public ImpressionServiceImpl(ImpressionRepository impressionRepository, ClientRepository clientRepository) {
         this.impressionRepository = impressionRepository;
+        this.clientRepository = clientRepository;
     }
 
 
     @Override
-    public Impression save(Impression impression) {
-        return impressionRepository.save(impression);
+    public Impression save(Long id, Impression impression) throws EntityNotFoundException {
+        impressionRepository.save(impression);
+        bind(id, impression);
+        return impression;
     }
 
     @Override
@@ -51,7 +58,16 @@ public class ImpressionServiceImpl implements ImpressionService {
         impressionRepository.delete(impression);
     }
 
-        
+    public void bind(Long id, Impression impression) throws EntityNotFoundException{
+        Client client = clientRepository.get(id);
+
+        if (client == null) {
+            throw new EntityNotFoundException("client with id=%d not found".formatted(id));
+        }
+
+        client.addImpression(impression);
+        impression.setProprietaireImpression(client);
+    }
 
 
 }

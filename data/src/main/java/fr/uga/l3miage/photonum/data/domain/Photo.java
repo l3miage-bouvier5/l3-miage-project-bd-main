@@ -24,13 +24,13 @@ public class Photo {
     private Image image;
 
     @ManyToMany
-    private List<Tirage> tirages;
+    private List<Tirage> tirages = new ArrayList<>();
     
     @ManyToMany
-    private List<Page> pages;
+    private List<Page> pages = new ArrayList<>();
 
     @OneToMany(mappedBy = "couverture")
-    private List<Album> albums;
+    private List<Album> albums = new ArrayList<>();
 
     @ManyToMany
     private List<Cadre> cadres;
@@ -67,33 +67,27 @@ public class Photo {
         return tirages;
     }
 
-    public void setTirages(List<Tirage> tirages) {
-        this.tirages = tirages;
-    }
 
     public List<Page> getPage() {
         return pages;
-    }
-
-    public void setPage(List<Page> pages) {
-        this.pages = pages;
     }
 
     public List<Album> getAlbums() {
         return albums;
     }
 
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
-    }
+
 
     public List<Cadre> getCadres() {
         return cadres;
     }
 
-    public void setCadres(List<Cadre> cadres) {
-        this.cadres = cadres;
+
+    public void addAlbums(Album album){
+        albums.add(album);
     }
+    
+    
 
     // add cadres, add albums, add tirage?
     // equals, hash code
