@@ -61,10 +61,10 @@ public class AdresseController {
         }
     }
 
-    @PostMapping(value = "/adresses", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "clients/{id}/adresses", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public AdresseDTO newAdresse(@RequestBody @Valid AdresseDTO adresse) {
-        var saved = adresseService.save(adresseMapper.dtoToEntity(adresse));
+    public AdresseDTO newAdresse(@PathVariable("id") @NotNull Long id,@RequestBody @Valid AdresseDTO adresse) throws EntityNotFoundException {
+        var saved = adresseService.save(id, adresseMapper.dtoToEntity(adresse));
         return adresseMapper.entityToDTO(saved);
     }
 

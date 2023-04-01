@@ -10,6 +10,8 @@ public interface ArticleService extends BaseService<Article, Long> {
 
     Article get(Long id) throws EntityNotFoundException;
 
-    
+    Article update(Article article) throws EntityNotFoundException;
+
+    void delete(Long id) throws EntityNotFoundException;
 
 }

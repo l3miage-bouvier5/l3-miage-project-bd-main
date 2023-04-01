@@ -1,5 +1,6 @@
 package fr.uga.l3miage.photonum.data.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -30,18 +31,15 @@ public class Adresse {
 
 
     @ManyToMany(mappedBy = "adressesPostales")
-    List<Client> clients;
+    List<Client> clients = new ArrayList<Client>();
 
     @OneToMany(mappedBy = "adresseLivraison")
-    List<Commande> commandes;
+    List<Commande> commandes = new ArrayList<Commande>();
 
     public List<Commande> getCommandes() {
         return commandes;
     }
 
-    public void setCommandes(List<Commande> commandes) {
-        this.commandes = commandes;
-    }
 
     public int getCodePostal() {
         return codePostal;
@@ -84,6 +82,22 @@ public class Adresse {
 
     public List<Client> getClients() {
         return clients;
+    }
+
+    public void addClient(Client client) {
+        this.clients.add(client);
+    }
+
+    public void addCommande(Commande commande) {
+        this.commandes.add(commande);
+    }
+
+    public void deleteClient(Client client) {
+        this.clients.remove(client);
+    }
+
+    public void deleteCommande(Commande commande) {
+        this.commandes.remove(commande);
     }
 
     @Override
