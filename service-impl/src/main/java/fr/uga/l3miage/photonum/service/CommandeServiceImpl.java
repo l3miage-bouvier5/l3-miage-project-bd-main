@@ -1,6 +1,9 @@
 package fr.uga.l3miage.photonum.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +68,18 @@ public class CommandeServiceImpl implements CommandeService {
         }
         client.addCommande(commande);
         commande.setClient(client);
+    }
+
+    @Override
+    public Commande getCommandeByClientId(Long idClient, Long idCommande) throws EntityNotFoundException{
+        List<Commande> commandes = this.clientRepository.get(idClient).getCommandes();
+
+        for (Commande c: commandes) {
+            if (c.getId() == idCommande) {
+                return c;
+            }
+        }
+        return null;
     }
 
 }
