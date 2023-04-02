@@ -6,7 +6,7 @@ import fr.uga.l3miage.photonum.service.base.BaseService;
 public interface CommandeService extends BaseService<Commande, Long> {
     
     /* Save command object */
-    Commande save(Commande commande);
+    Commande save(Long id, Commande commande) throws EntityNotFoundException;
 
     /* Search command */
     // Collection<Commande> searchById(Long id);

@@ -39,4 +39,14 @@ public class ArticleServiceImpl implements ArticleService {
     public Article update(Article object) throws EntityNotFoundException {
         return articleRepository.save(object);
     }
+
+
+    @Override
+    public void delete(Long id) throws EntityNotFoundException {
+        Article article = get(id);
+        if (article == null) {
+            throw new EntityNotFoundException("article with id=%d not found".formatted(id));
+        }
+        articleRepository.delete(article);
+    }
 }

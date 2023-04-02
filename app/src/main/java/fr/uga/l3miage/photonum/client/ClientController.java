@@ -32,6 +32,7 @@ public class ClientController {
     private final ClientService clientService;
     private final CommandeMapper commandeMapper;
 
+    
     @Autowired
     public ClientController(ClientMapper clientMapper, ClientService clientService, CommandeMapper commandeMapper){
         this.clientService  = clientService;
@@ -50,7 +51,7 @@ public class ClientController {
 
     @GetMapping("/clients/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ClientDTO author(@PathVariable("id") @NotNull Long id) {
+    public ClientDTO client(@PathVariable("id") @NotNull Long id) {
         try {
             return clientMapper.entityToDTO(clientService.get(id));
         } catch (EntityNotFoundException e) {
@@ -60,13 +61,13 @@ public class ClientController {
 
     @PostMapping(value = "/clients", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ClientDTO newAuthor(@RequestBody @Valid ClientDTO client) {
+    public ClientDTO newClient(@RequestBody @Valid ClientDTO client) {
         Client saved = clientService.save(clientMapper.dtoToEntity(client));
         return clientMapper.entityToDTO(saved);
     }
 
     @PutMapping(value = "/clients/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ClientDTO updateAuthor(@RequestBody @Valid ClientDTO client, @NotNull @PathVariable("id") Long id) {
+    public ClientDTO updateClient(@RequestBody @Valid ClientDTO client, @NotNull @PathVariable("id") Long id) {
         try {
             if (client.id().equals(id)) {
                 clientService.get(id);
@@ -81,7 +82,7 @@ public class ClientController {
 
     @DeleteMapping("/clients/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAuthor(@PathVariable("id") @NotNull Long id) {
+    public void deleteClient(@PathVariable("id") @NotNull Long id) {
         try {
             clientService.delete(id);
         } catch (EntityNotFoundException e) {
@@ -92,7 +93,7 @@ public class ClientController {
     }
 
     @GetMapping("/client/{id}/commandes")
-    public Collection<CommandeDTO> books(@PathVariable("id") @NotNull Long clientId) {
+    public Collection<CommandeDTO> commandes(@PathVariable("id") @NotNull Long clientId) {
         try {
             var client = clientService.get(clientId);
             return commandeMapper.entityToDTO(client.getCommandes());

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,7 +24,6 @@ import jakarta.validation.constraints.NotNull;
 
 
 // import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 // import org.springframework.web.bind.annotation.*;
 // import org.springframework.web.server.ResponseStatusException;
 
@@ -63,10 +61,10 @@ public class AdresseController {
         }
     }
 
-    @PostMapping(value = "/adresses", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "clients/{id}/adresses", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public AdresseDTO newAdresse(@RequestBody @Valid AdresseDTO adresse) {
-        var saved = adresseService.save(adresseMapper.dtoToEntity(adresse));
+    public AdresseDTO newAdresse(@PathVariable("id") @NotNull Long id,@RequestBody @Valid AdresseDTO adresse) throws EntityNotFoundException {
+        var saved = adresseService.save(id, adresseMapper.dtoToEntity(adresse));
         return adresseMapper.entityToDTO(saved);
     }
 
@@ -80,7 +78,7 @@ public class AdresseController {
             }
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         } catch (EntityNotFoundException e) {
-           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "adresse is not found", e);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "adresse is not found", e);
         }
     }
 

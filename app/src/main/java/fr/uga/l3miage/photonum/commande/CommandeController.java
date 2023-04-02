@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import fr.uga.l3miage.photonum.data.domain.Commande;
 import fr.uga.l3miage.photonum.service.CommandeService;
 import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -46,15 +47,12 @@ public class CommandeController {
         }
     }
 
-    @PostMapping("/commandes")
+    @PostMapping("/clients/{id}/commandes")
     @ResponseStatus(HttpStatus.CREATED)
-    public CommandeDTO newCommande(@RequestBody @Valid CommandeDTO commande){
-        try{
-            final var entity = commandeService.save(commandeMapper.dtoToEntity(commande));
-            return commandeMapper.entityToDTO(entity);
-        } catch (IllegalArgumentException e){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, null, e);
-        }
+    public CommandeDTO newCommande(@PathVariable("id") @NotNull Long clientId, @RequestBody @Valid CommandeDTO commande) throws EntityNotFoundException{
+        Commande entity = commandeService.save(clientId,commandeMapper.dtoToEntity(commande));
+        return commandeMapper.entityToDTO(entity);
+        
     }
 
     @DeleteMapping("/commandes/{id}")
