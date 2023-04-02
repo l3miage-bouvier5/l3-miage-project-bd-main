@@ -32,7 +32,7 @@ public class CatalogueController {
     }
 
     @GetMapping("/catalogues")
-    public Collection<CatalogueDTO> articles() {
+    public Collection<CatalogueDTO> catalogues() {
         Collection<Catalogue> catalogues;
         catalogues = catalogueService.list();
         
@@ -44,7 +44,7 @@ public class CatalogueController {
 
     @GetMapping("/catalogues/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CatalogueDTO article(@PathVariable("id") @NotNull Long id) {
+    public CatalogueDTO catalogue(@PathVariable("id") @NotNull Long id) {
         try {
             return catalogueMapper.entityToDTO(catalogueService.get(id));
         } catch (EntityNotFoundException e) {
@@ -55,13 +55,13 @@ public class CatalogueController {
 
     @PostMapping(value = "/catalogues", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public CatalogueDTO newArticle(@RequestBody @Valid CatalogueDTO article) {
-        Catalogue saved = catalogueService.save(catalogueMapper.dtoToEntity(article));
+    public CatalogueDTO newCatalogue(@RequestBody @Valid CatalogueDTO catalogue) {
+        Catalogue saved = catalogueService.save(catalogueMapper.dtoToEntity(catalogue));
         return catalogueMapper.entityToDTO(saved);
     }
     
     @PutMapping(value = "/catalogues/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public CatalogueDTO updateArticle(@RequestBody @Valid CatalogueDTO catalogue, @NotNull @PathVariable("id") Long id) {
+    public CatalogueDTO updateCatalogue(@RequestBody @Valid CatalogueDTO catalogue, @NotNull @PathVariable("id") Long id) {
         try {
             if (catalogue.id().equals(id)) {
                 catalogueService.get(id);
@@ -77,7 +77,7 @@ public class CatalogueController {
 
     @DeleteMapping("/catalogues/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteArticle(@PathVariable("id") @NotNull Long id) {
+    public void deleteCatalogue(@PathVariable("id") @NotNull Long id) {
         try {
             catalogueService.delete(id);
         } catch (EntityNotFoundException e) {

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import fr.uga.l3miage.photonum.data.domain.Commande;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Id;
 import jakarta.persistence.PersistenceContext;
 
 @Repository

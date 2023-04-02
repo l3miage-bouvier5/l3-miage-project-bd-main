@@ -53,7 +53,6 @@ public class Fixtures {
     public static Article newArticle() {
         Article article = new Article();
         article.setPrix(Float.parseFloat(FAKER.commerce().price()));
-        article.setQuantite((int) FAKER.number().randomNumber());
         article.setRef(FAKER.code().isbn10());    
         return article;
     }

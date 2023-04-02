@@ -28,11 +28,11 @@ public class Article {
     @Column(name="qualite")
     private Qualite qualite;
 
-    @Column(name="quantite")
-    private int quantite;
-
     @Column(name="impression")
     private TypeImpression typeImpression;
+
+    @Column(name="format")
+    private Format format;
 
     // (UML) Relation AppartientA
     @ManyToOne
@@ -91,15 +91,6 @@ public class Article {
         this.qualite = qualite;
     }
 
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
 
 
     public Catalogue getCatalogue() {
