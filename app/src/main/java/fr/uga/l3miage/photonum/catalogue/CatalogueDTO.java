@@ -7,6 +7,6 @@ public record CatalogueDTO(
 
     @NotBlank(message = "name of the catalogue is mandatory")
     String nom
-
+    
 ) {
 }
