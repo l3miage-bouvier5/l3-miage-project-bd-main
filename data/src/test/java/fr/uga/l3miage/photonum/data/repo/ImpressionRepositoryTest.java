@@ -20,6 +20,7 @@ class ImpressionRepositoryTest extends Base {
         Client c1 = Fixtures.newClient();
         c1.setNom("nom");
         Date d = new Date();
+        System.out.println(d);
         Impression i1 = Fixtures.newImpression(c1, d);
 
         Impression i2 = Fixtures.newImpression(c1, d);

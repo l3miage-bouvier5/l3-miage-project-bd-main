@@ -60,8 +60,10 @@ public class ImpressionController {
     @PostMapping(value = "/impressions", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ImpressionDTO newImpression(@RequestBody @Valid ImpressionDTO impression) {
+        
         var saved = imprService.save(imprMapper.dtoToEntity(impression));
         return imprMapper.entityToDTO(saved);
+        
     }
 
     @PutMapping(value = "/impressions/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
