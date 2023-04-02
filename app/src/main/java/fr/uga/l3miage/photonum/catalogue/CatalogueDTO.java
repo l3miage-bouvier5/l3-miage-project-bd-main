@@ -1,19 +1,12 @@
 package fr.uga.l3miage.photonum.catalogue;
 
-import fr.uga.l3miage.photonum.data.domain.Format;
-import fr.uga.l3miage.photonum.data.domain.Qualite;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public record CatalogueDTO(
     Long id,
 
-    @NotNull(message = "price in catalogue is mandatory")
-    float prix,
+    @NotBlank(message = "name of the catalogue is mandatory")
+    String nom
 
-    Format format,
-
-    Qualite qualite
-
-    
 ) {
 }

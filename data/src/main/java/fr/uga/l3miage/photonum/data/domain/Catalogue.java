@@ -13,34 +13,16 @@ public class Catalogue {
     @GeneratedValue
     Long id;
 
-    float prix;
-
-    Format format;
-
-    Qualite qualite;
+    String nom;
 
     public Long getId() {
         return id;
     }
-    public void setId(Long id) {
-        this.id = id;
+    
+    public void setNom(String nom) {
+        this.nom = nom;
     }
-    public float getPrix() {
-        return prix;
-    }
-    public void setPrix(float prix) {
-        this.prix = prix;
-    }
-    public Format getFormat() {
-        return format;
-    }
-    public void setFormat(Format format) {
-        this.format = format;
-    }
-    public Qualite getQualite() {
-        return qualite;
-    }
-    public void setQualite(Qualite qualite) {
-        this.qualite = qualite;
+    public String getNom() {
+        return nom;
     }
 }
