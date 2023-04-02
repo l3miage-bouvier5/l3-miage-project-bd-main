@@ -21,7 +21,7 @@ public class Image {
     private Long resolution;
 
     @Column(name = "est_partage")
-    private Boolean estPartage;
+    private boolean estPartage;
 
     @ManyToOne
     private Client proprietaireImage;
@@ -57,7 +57,8 @@ public class Image {
         this.resolution = resolution;
     }
 
-    public Boolean getEstPartage() {
+    // changed here
+    public boolean getEstPartage() {
         return estPartage;
     }
 

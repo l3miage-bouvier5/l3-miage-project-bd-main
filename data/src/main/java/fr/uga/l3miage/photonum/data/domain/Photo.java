@@ -68,7 +68,7 @@ public class Photo {
     }
 
 
-    public List<Page> getPage() {
+    public List<Page> getPages() {
         return pages;
     }
 
@@ -83,7 +83,7 @@ public class Photo {
     }
 
 
-    public void addAlbums(Album album){
+    public void addAlbums(Album album) {
         albums.add(album);
     }
     
@@ -110,7 +110,7 @@ public class Photo {
         impressions.addAll(this.getAlbums());
         impressions.addAll(this.getCadres());
         impressions.addAll(this.getTirages());
-        for(Page p : this.getPage()){
+        for(Page p : this.getPages()){
             impressions.addAll(p.getCalendriers());
             impressions.addAll(p.getAlbums());
         }

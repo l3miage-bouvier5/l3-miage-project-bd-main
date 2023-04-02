@@ -91,6 +91,8 @@ public class Fixtures {
 
     public static Image newImage() {
         Image image = new Image();
+        image.setInfoPriseDeVue(FAKER.lorem().sentence());
+        image.setResolution(FAKER.number().randomNumber());
         image.setEstPartage(FAKER.random().nextBoolean());
         image.setCheminAcces(FAKER.file().fileName());
         return image;

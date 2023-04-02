@@ -1,6 +1,11 @@
 package fr.uga.l3miage.photonum.image;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import fr.uga.l3miage.photonum.data.domain.Image;
+import fr.uga.l3miage.photonum.data.domain.Page;
+import fr.uga.l3miage.photonum.data.domain.Impression;
+import fr.uga.l3miage.photonum.data.domain.Photo;
 import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import fr.uga.l3miage.photonum.service.ImageService;
 import jakarta.validation.Valid;
@@ -63,11 +71,11 @@ public class ImageController {
         Image image = imageMapper.dtoToEntity(imageDTO);
         try {
             imageService.update(image);
+            return imageMapper.entityToDTO(image);
         } catch (EntityNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
+            // e.printStackTrace();
         }
-        return imageMapper.entityToDTO(image);
     }
 
 
@@ -76,9 +84,12 @@ public class ImageController {
     public ImageDTO updateImage(@PathVariable("id") @NotNull Long id, @RequestBody @Valid ImageDTO imageDTO) {
         try {
             Image image = imageMapper.dtoToEntity(imageDTO);
-            if (image.getEstPartage()) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'image partagée ne peut pas être modifiée");
-            }else{ imageService.update(image); }
+            if (imageService.get(id).getEstPartage() && !image.getEstPartage()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "Une image partagée ne peut pas être départagée");
+            } else {
+                imageService.update(image);
+            }
             return imageMapper.entityToDTO(image);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
@@ -89,7 +100,32 @@ public class ImageController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteImage(@PathVariable("id") @NotNull Long id) {
         try {
-            imageService.delete(id);
+            if (imageService.get(id).getEstPartage()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "Une image partagée ne peut pas être supprimée");
+            } else {
+                List<Photo> photos = imageService.get(id).getPhotos();
+                List<Impression> impressions = new ArrayList<Impression>();
+                // dans cadre
+                for (Photo photo : photos) {
+                    impressions.addAll(photo.getCadres());
+                    impressions.addAll(photo.getTirages());
+                    impressions.addAll(photo.getAlbums());
+                    List<Page> pages = photo.getPages();
+                    for (Page page : pages) {
+                        impressions.addAll(page.getAlbums());
+                        impressions.addAll(page.getCalendriers());
+                    }
+                }
+                for (Impression impression : impressions) {
+                    LocalDate date = impression.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    if ( LocalDate.now().isBefore(date)) {
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                                "Une image liée à une impression en cours ne peut pas être supprimée");
+                    }
+                }
+                imageService.delete(id);
+            }
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
         }
