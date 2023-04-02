@@ -14,8 +14,6 @@ public record CommandeDTO (
     Date date,
 
     @NotNull(message = "validation status of the order is mandatory")
-    boolean validee,
-
-    @NotNull(message = "List of articles of the order is mandatory")
-    List<Article> articles
+    boolean validee
+    
 ){}
