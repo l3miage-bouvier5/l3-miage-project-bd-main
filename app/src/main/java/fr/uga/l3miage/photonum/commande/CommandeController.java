@@ -58,9 +58,9 @@ public class CommandeController {
 
     @PostMapping("/clients/{id}/commandes")
     @ResponseStatus(HttpStatus.CREATED)
-    public CommandeDTO newCommande(@PathVariable("id") @NotNull Long clientId, @RequestBody @Valid CommandeDTO commande, @RequestParam List<Article> articles) throws EntityNotFoundException{
+    public CommandeDTO newCommande(@PathVariable("id") @NotNull Long clientId, @RequestBody @Valid CommandeDTO commande,@RequestBody List<Article> articles) throws EntityNotFoundException{
         Commande entity = commandeService.save(clientId,commandeMapper.dtoToEntity(commande), articles);
-        return commandeMapper.entityToDTO(entity);    
+        return commandeMapper.entityToDTO(entity);
     }
 
     @PutMapping("/commandes/{id}")

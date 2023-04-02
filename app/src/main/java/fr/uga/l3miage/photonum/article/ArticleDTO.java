@@ -13,8 +13,6 @@ public record ArticleDTO (
     float prix,
 
     @NotBlank(message = "quality of the article is mandatory")
-    Qualite qualite,
+    Qualite qualite
 
-    @NotBlank(message = "quantity of the article is mandatory")
-    int quantite
 ) {}
