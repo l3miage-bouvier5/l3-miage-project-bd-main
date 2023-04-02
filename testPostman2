@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "fb815f5e-da4c-49f2-a254-e275b5015f07",
+		"name": "Projet Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26146960"
+	},
+	"item": [
+		{
+			"name": "Create a new image (not shared)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Create a new image (shared)\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var imageId = pm.response.json().id\r",
+							"    pm.collectionVariables.set(\"imageId\", imageId);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"infoPriseDeVue\":\"profil\",\r\n    \"cheminAcces\":\"../IMG/\",\r\n    \"resolution\":1000,\r\n    \"estPartage\": false\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/images",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an image (success)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Image is updated\", function () {\r",
+							"    var image1Id = pm.response.json().id;\r",
+							"    pm.collectionVariables.set(\"image1Id\", image1Id);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":{{imageId}},\r\n    \"infoPriseDeVue\":\"profil\",\r\n    \"cheminAcces\":\"../IMG\",\r\n    \"resolution\":1190,\r\n    \"estPartage\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/images/{{imageId}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"images",
+						"{{imageId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an image (fail)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":{{imageId}},\r\n    \"infoPriseDeVue\":\"de haut\",\r\n    \"cheminAcces\":\"../IMG\",\r\n    \"resolution\":720,\r\n    \"estPartage\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/images/{{image1Id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"images",
+						"{{image1Id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL\n",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "imageId",
+			"value": ""
+		},
+		{
+			"key": "image1Id",
+			"value": ""
+		}
+	]
+}
