@@ -55,10 +55,19 @@ public class ImpressionController {
         }
     }
 
-    @PostMapping(value = "client/{clientId}/impressions", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "clients/{clientId}/impressions", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public ImpressionDTO newImpression(@PathVariable("clientId") @NotNull Long clientId,@RequestBody @Valid ImpressionDTO impression) throws EntityNotFoundException {
-        var saved = imprService.save(clientId,imprMapper.dtoToEntity(impression));
+        var saved = imprService.saveImpressionWithClientID(clientId,imprMapper.dtoToEntity(impression));
+        return imprMapper.entityToDTO(saved);
+        
+    }
+
+
+    @PostMapping(value = "/impressions", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public ImpressionDTO newImpression(@RequestBody @Valid ImpressionDTO impression) throws EntityNotFoundException {
+        var saved = imprService.save(imprMapper.dtoToEntity(impression));
         return imprMapper.entityToDTO(saved);
         
     }

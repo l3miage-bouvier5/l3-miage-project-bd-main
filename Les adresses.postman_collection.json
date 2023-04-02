@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "3e6ae7d4-91f0-4f3f-8b75-21af266ad53b",
+		"name": "Les adresses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26121561"
+	},
+	"item": [
+		{
+			"name": "Post client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Client is created\",function(){\r",
+							"    var clientId = pm.response.json().id\r",
+							"    pm.collectionVariables.set(\"clientId\", clientId);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nom\" : \"{{$randomLastName}}\",\r\n    \"adresseMail\":\"{{$randomEmail}}\",\r\n    \"motDePasse\" : \"{{$randomPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/clients",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adresse 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Client is created\",function(){\r",
+							"    var clientId = pm.response.json().id\r",
+							"    pm.collectionVariables.set(\"adresseId\", clientId);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomRue\" : \"{{$randomStreetName}}\",\r\n    \"codePostal\" : 38000,\r\n    \"numDePorte\" : {{$randomInt}},\r\n    \"ville\" : \"{{$randomCity}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/clients/{{clientId}}/adresses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						"{{clientId}}",
+						"adresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adresse 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomRue\" : \"{{$randomStreetName}}\",\r\n    \"codePostal\" : 38000,\r\n    \"numDePorte\" : {{$randomInt}},\r\n    \"ville\" : \"{{$randomCity}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/clients/{{clientId}}/adresses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						"{{clientId}}",
+						"adresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "toutes les adresses d'un client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/clients/{{clientId}}/adresses",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						"{{clientId}}",
+						"adresses"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "clientId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "articleId",
+			"value": ""
+		},
+		{
+			"key": "adresseId",
+			"value": ""
+		}
+	]
+}

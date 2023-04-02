@@ -26,9 +26,9 @@ public class ImpressionServiceImpl implements ImpressionService {
 
 
     @Override
-    public Impression save(Long id, Impression impression) throws EntityNotFoundException {
-        impressionRepository.save(impression);
+    public Impression saveImpressionWithClientID(Long id, Impression impression) throws EntityNotFoundException {
         bind(id, impression);
+        impressionRepository.save(impression);
         return impression;
     }
 
@@ -70,5 +70,8 @@ public class ImpressionServiceImpl implements ImpressionService {
     }
 
 
+    public Impression save(Impression impression) {
+        return impressionRepository.save(impression);
+    }
 }
 

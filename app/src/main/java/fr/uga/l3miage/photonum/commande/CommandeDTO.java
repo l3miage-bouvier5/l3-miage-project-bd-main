@@ -1,7 +1,9 @@
 package fr.uga.l3miage.photonum.commande;
 
 import java.util.Date;
+import java.util.List;
 
+import fr.uga.l3miage.photonum.data.domain.Article;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -11,9 +13,7 @@ public record CommandeDTO (
     @NotNull(message = "date of the order is mandatory")
     Date date,
 
-    @Positive(message = "total price of the order is mandatory")
-    float prixTotal,
-
     @NotNull(message = "validation status of the order is mandatory")
     boolean validee
+    
 ){}

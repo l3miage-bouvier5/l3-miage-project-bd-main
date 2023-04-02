@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -62,5 +63,14 @@ public class AdresseServiceImpl implements AdresseService {
         adresse.addClient(client);
 
         
+    }
+
+    public List<Adresse> listByClient(Long id) throws EntityNotFoundException {
+        Client client = clientRepository.get(id);
+        if (client == null) {
+            throw new EntityNotFoundException("client with id=%d not found".formatted(id));
+        }
+        client.getAdressesPostales().size();
+        return client.getAdressesPostales();
     }
 }
