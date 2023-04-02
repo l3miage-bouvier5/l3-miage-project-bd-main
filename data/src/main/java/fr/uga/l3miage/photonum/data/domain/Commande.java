@@ -1,6 +1,6 @@
 package fr.uga.l3miage.photonum.data.domain;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -53,8 +53,8 @@ public class Commande {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(Date date2) {
+        this.date = date2;
     }
 
     public float getPrixTotal() {

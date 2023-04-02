@@ -107,6 +107,55 @@ public class Client {
         this.adressesPostales = adressesPostales;
     }
 
+    
+    public List<Commande> getCommandes() {
+        return commandes;
+    }
+    
+    public void setCommandes(List<Commande> commandes) {
+        this.commandes = commandes;
+    }
+    
+    public List<Image> getImages() {
+        return images;
+    }
+    
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public void addCommande(Commande commande) {
+        this.commandes.add(commande);
+    }
+
+    public void addImage(Image image) {
+        this.images.add(image);
+    }
+
+    public void addImpression(Impression impression) {
+        this.impressions.add(impression);
+    }
+
+    public void addAdresse(Adresse adresse) {
+        this.adressesPostales.add(adresse);
+    }
+
+    public void removeCommande(Commande commande) {
+        this.commandes.remove(commande);
+    }
+
+    public void removeImage(Image image) {
+        this.images.remove(image);
+    }
+
+    public void removeImpression(Impression impression) {
+        this.impressions.remove(impression);
+    }
+
+    public void removeAdresse(Adresse adresse) {
+        this.adressesPostales.remove(adresse);
+    }
+
     @Override
     public boolean equals(Object other){
         if(!(other instanceof Client) || other == null){
@@ -115,24 +164,6 @@ public class Client {
 
         Client otherClient = (Client) other;
 
-        return otherClient.getNom().equals(this.nom) 
-        && otherClient.getPrenoms().equals(this.prenoms)
-        && otherClient.getAdressesPostales().equals(this.adressesPostales); 
-    }
-
-    public List<Commande> getCommandes() {
-        return commandes;
-    }
-
-    public void setCommandes(List<Commande> commandes) {
-        this.commandes = commandes;
-    }
-
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
+        return otherClient.adresseMail.equals(this.adresseMail); 
     }
 }

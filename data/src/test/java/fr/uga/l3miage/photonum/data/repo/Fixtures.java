@@ -5,7 +5,6 @@ import com.github.javafaker.Faker;
 import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.data.domain.Album;
 import fr.uga.l3miage.photonum.data.domain.Article;
-import fr.uga.l3miage.photonum.data.domain.Catalogue;
 import fr.uga.l3miage.photonum.data.domain.Page;
 import fr.uga.l3miage.photonum.data.domain.Photo;
 import fr.uga.l3miage.photonum.data.domain.Client;
@@ -14,7 +13,7 @@ import fr.uga.l3miage.photonum.data.domain.Image;
 import fr.uga.l3miage.photonum.data.domain.Impression;
 import fr.uga.l3miage.photonum.data.domain.Tirage;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Random;
 
 public class Fixtures {
@@ -23,7 +22,7 @@ public class Fixtures {
 
     public static Tirage newTirage() {
         Tirage tirage = new Tirage();
-        tirage.setDate(new Date());
+        tirage.setDate(FAKER.date().birthday());
         tirage.setPhotos(null);
         return tirage;
     }
@@ -40,10 +39,6 @@ public class Fixtures {
     public static Photo newPhoto() {
         Photo photo = new Photo();
         photo.setTexteDescriptif(FAKER.lorem().sentence());
-        photo.setAlbums(null);
-        photo.setCadres(null);
-        photo.setPage(null);
-        photo.setTirages(null);
         photo.setParamRetoucheImg("param");
         return photo;
     }
@@ -87,7 +82,7 @@ public class Fixtures {
 
     public static Commande newCommande(){
         Commande commande = new Commande();
-        commande.setDate(FAKER.date().birthday());
+        commande.setDate(new Date(Faker.instance().date().birthday().getTime()));
         Random r = new Random();
         float random = (float) (r.nextFloat() * 10.0);
         commande.setPrixTotal(random);

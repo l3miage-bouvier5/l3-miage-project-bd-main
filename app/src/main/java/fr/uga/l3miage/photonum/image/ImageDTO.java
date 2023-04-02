@@ -9,7 +9,6 @@ public record ImageDTO(
     String cheminAcces,
     @NotBlank(message = "la resolution d'une image est obligatoire")
     Integer resolution,
-
     @NotBlank(message = "le partage d'une image doit être précisé")
     boolean partage
 ) {

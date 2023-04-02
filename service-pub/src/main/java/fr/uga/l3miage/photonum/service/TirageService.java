@@ -7,7 +7,13 @@ import java.util.Collection;
 
 public interface TirageService extends BaseService<Tirage, Long> {
 
-    Tirage save(Tirage tirage);
+    Tirage save(Long id, Tirage tirage) throws EntityNotFoundException;
+
+    Tirage get(Long id) throws EntityNotFoundException;
+
+    Tirage update(Tirage tirage) throws EntityNotFoundException;
+
+    void delete(Long id) throws EntityNotFoundException;
 
 
 }

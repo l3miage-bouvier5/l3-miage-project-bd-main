@@ -1,11 +1,12 @@
 package fr.uga.l3miage.photonum.data.repo;
 
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
 import fr.uga.l3miage.photonum.data.domain.Catalogue;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public class CatalogueRepository implements CRUDRepository<Long, Catalogue> {
@@ -14,9 +15,9 @@ public class CatalogueRepository implements CRUDRepository<Long, Catalogue> {
     private EntityManager entityManager;
 
     @Override
-    public Catalogue save(Catalogue catalogue) {
-        entityManager.persist(catalogue);
-        return catalogue;
+    public Catalogue save(Catalogue entity) {
+        entityManager.persist(entity);
+        return entity;
     }
 
     @Override
@@ -24,21 +25,14 @@ public class CatalogueRepository implements CRUDRepository<Long, Catalogue> {
         return entityManager.find(Catalogue.class, id);
     }
 
-
     @Override
-    public void delete(Catalogue catalogue) {
-        entityManager.remove(catalogue);
+    public void delete(Catalogue entity) {
+        entityManager.remove(entity);
     }
 
-
-    /**
-     * Renvoie toutes les catalogues
-     *
-     * @return une liste d'catalogues trié par le prix
-     */
     @Override
     public List<Catalogue> all() {
-        return entityManager.createQuery("select a from Catalogue a order by a.prix", Catalogue.class).getResultList();
+        return this.entityManager.createQuery("from Catalogue c",Catalogue.class).getResultList();
     }
-
+    
 }

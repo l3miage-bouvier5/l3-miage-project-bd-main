@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface AdresseService extends BaseService<Adresse, Long> {
 
-    Adresse save(Adresse adresse);
+    Adresse save(Long id,Adresse adresse) throws EntityNotFoundException;
 
     void delete(Long id) throws EntityNotFoundException;
 

@@ -1,5 +1,6 @@
 package fr.uga.l3miage.photonum.data.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -30,13 +31,16 @@ public class Article {
     @Column(name="quantite")
     private int quantite;
 
+    @Column(name="impression")
+    private TypeImpression typeImpression;
+
     // (UML) Relation AppartientA
     @ManyToOne
     private Catalogue catalogue;
 
     // (UML) Relation ContientArticles
     @ManyToMany
-    private List<Commande> commandes;
+    private List<Commande> commandes = new ArrayList<Commande>();
     
 
     @ManyToOne
@@ -55,11 +59,6 @@ public class Article {
 
     public Long getId() {
         return id;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
 
@@ -113,14 +112,16 @@ public class Article {
     }
 
 
-    public List<Commande> getCommande() {
-        return commandes;
+    public void addCommande(Commande commande){
+        this.commandes.add(commande);
     }
 
 
-    public void setCommande(List<Commande> commandes) {
-        this.commandes = commandes;
+    public void removeCommande(Commande commande){
+        this.commandes.remove(commande);
     }
+
+
 
     @Override
     public boolean equals(Object other){
@@ -132,4 +133,15 @@ public class Article {
         return otherArticle.getImpression().equals(this.impression)
         && otherArticle.qualite.equals(this.qualite);
     }
+
+
+    public TypeImpression getTypeImpression() {
+        return typeImpression;
+    }
+
+
+    public void setTypeImpression(TypeImpression typeImpression) {
+        this.typeImpression = typeImpression;
+    }
+
 }

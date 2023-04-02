@@ -1,11 +1,9 @@
 package fr.uga.l3miage.photonum.data.domain;
 
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Catalogue {
@@ -17,23 +15,10 @@ public class Catalogue {
 
     float prix;
 
-    TypeImpression typeImpression;
-
     Format format;
 
     Qualite qualite;
 
-    @Override
-    public boolean equals(Object other){
-        if(!(other instanceof Catalogue) || other == null){
-            return false;
-        }
-
-        Catalogue otherCatalogue = (Catalogue) other;
-
-        //TODO!!!!!!!!!!!!!!!!!!!
-        return false;
-    }
     public Long getId() {
         return id;
     }
@@ -45,12 +30,6 @@ public class Catalogue {
     }
     public void setPrix(float prix) {
         this.prix = prix;
-    }
-    public TypeImpression getTypeImpression() {
-        return typeImpression;
-    }
-    public void setTypeImpression(TypeImpression typeImpression) {
-        this.typeImpression = typeImpression;
     }
     public Format getFormat() {
         return format;
