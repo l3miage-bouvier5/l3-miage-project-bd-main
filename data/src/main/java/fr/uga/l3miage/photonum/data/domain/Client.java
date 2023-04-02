@@ -137,7 +137,8 @@ public class Client {
     }
 
     public void addAdresse(Adresse adresse) {
-        this.adressesPostales.add(adresse);
+        if(!this.adressesPostales.contains(adresse))
+            this.adressesPostales.add(adresse);
     }
 
     public void removeCommande(Commande commande) {

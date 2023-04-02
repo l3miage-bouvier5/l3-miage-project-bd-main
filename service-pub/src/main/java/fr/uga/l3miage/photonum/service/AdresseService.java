@@ -1,9 +1,9 @@
 package fr.uga.l3miage.photonum.service;
 
+import java.util.List;
+
 import fr.uga.l3miage.photonum.data.domain.Adresse;
 import fr.uga.l3miage.photonum.service.base.BaseService;
-
-import java.util.Collection;
 
 public interface AdresseService extends BaseService<Adresse, Long> {
 
@@ -11,5 +11,5 @@ public interface AdresseService extends BaseService<Adresse, Long> {
 
     void delete(Long id) throws EntityNotFoundException;
 
-
+    List<Adresse> listByClient(Long idClient) throws EntityNotFoundException;
 }

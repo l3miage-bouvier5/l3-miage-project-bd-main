@@ -61,6 +61,16 @@ public class AdresseController {
         }
     }
 
+    @GetMapping("/clients/{id}/adresses")
+    public Collection<AdresseDTO> adressesByClient(@PathVariable("id") @NotNull Long id) throws EntityNotFoundException {
+        Collection<Adresse> adresses;
+        adresses = adresseService.listByClient(id);
+    
+        return adresses.stream()
+                .map(adresseMapper::entityToDTO)
+                .toList();
+    }
+
     @PostMapping(value = "clients/{id}/adresses", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public AdresseDTO newAdresse(@PathVariable("id") @NotNull Long id,@RequestBody @Valid AdresseDTO adresse) throws EntityNotFoundException {

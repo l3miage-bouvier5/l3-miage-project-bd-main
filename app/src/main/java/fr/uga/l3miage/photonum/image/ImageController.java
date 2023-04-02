@@ -76,7 +76,7 @@ public class ImageController {
     public ImageDTO updateImage(@PathVariable("id") @NotNull Long id, @RequestBody @Valid ImageDTO imageDTO) {
         try {
             Image image = imageMapper.dtoToEntity(imageDTO);
-            if (image.getPartage)
+            if (image.getEstPartage())
             imageService.update(image);
             return imageMapper.entityToDTO(image);
         } catch (EntityNotFoundException e) {

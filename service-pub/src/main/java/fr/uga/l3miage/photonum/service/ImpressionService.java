@@ -12,7 +12,7 @@ public interface ImpressionService extends BaseService<Impression, Long> {
      * @param impression to be saved
      * @return the impression with an id
      */
-    Impression save(Long id,Impression impression) throws EntityNotFoundException;
+    Impression saveImpressionWithClientID(Long id,Impression impression) throws EntityNotFoundException;
 
     /**
      * Deletes an impression
@@ -22,5 +22,7 @@ public interface ImpressionService extends BaseService<Impression, Long> {
      */
     void delete(Long id) throws EntityNotFoundException;
 
+
+    Impression save(Impression impression) throws EntityNotFoundException;
 
 }
