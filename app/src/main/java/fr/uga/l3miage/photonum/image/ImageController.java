@@ -3,7 +3,6 @@ package fr.uga.l3miage.photonum.image;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.codec.DecodingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,11 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import fr.uga.l3miage.photonum.commande.CommandeDTO;
-import fr.uga.l3miage.photonum.commande.CommandeMapper;
-import fr.uga.l3miage.photonum.data.domain.Client;
 import fr.uga.l3miage.photonum.data.domain.Image;
-import fr.uga.l3miage.photonum.service.ClientService;
 import fr.uga.l3miage.photonum.service.EntityNotFoundException;
 import fr.uga.l3miage.photonum.service.ImageService;
 import jakarta.validation.Valid;
@@ -81,6 +76,7 @@ public class ImageController {
     public ImageDTO updateImage(@PathVariable("id") @NotNull Long id, @RequestBody @Valid ImageDTO imageDTO) {
         try {
             Image image = imageMapper.dtoToEntity(imageDTO);
+            if (image.getPartage)
             imageService.update(image);
             return imageMapper.entityToDTO(image);
         } catch (EntityNotFoundException e) {
