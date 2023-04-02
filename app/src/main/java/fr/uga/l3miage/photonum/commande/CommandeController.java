@@ -1,6 +1,7 @@
 package fr.uga.l3miage.photonum.commande;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,12 +9,15 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import fr.uga.l3miage.photonum.data.domain.Article;
 import fr.uga.l3miage.photonum.data.domain.Commande;
 import fr.uga.l3miage.photonum.service.CommandeService;
 import fr.uga.l3miage.photonum.service.EntityNotFoundException;
@@ -54,10 +58,20 @@ public class CommandeController {
 
     @PostMapping("/clients/{id}/commandes")
     @ResponseStatus(HttpStatus.CREATED)
-    public CommandeDTO newCommande(@PathVariable("id") @NotNull Long clientId, @RequestBody @Valid CommandeDTO commande) throws EntityNotFoundException{
-        Commande entity = commandeService.save(clientId,commandeMapper.dtoToEntity(commande));
+    public CommandeDTO newCommande(@PathVariable("id") @NotNull Long clientId, @RequestBody @Valid CommandeDTO commande,@RequestBody List<Article> articles) throws EntityNotFoundException{
+        Commande entity = commandeService.save(clientId,commandeMapper.dtoToEntity(commande), articles);
         return commandeMapper.entityToDTO(entity);
-        
+    }
+
+    @PutMapping("/commandes/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CommandeDTO updateCommande(@PathVariable("id") @NotNull Long id, @RequestBody @Valid CommandeDTO commande){
+        try{
+            Commande entity = commandeService.update(commandeMapper.dtoToEntity(commande));
+            return commandeMapper.entityToDTO(entity);
+        } catch (EntityNotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
+        }
     }
 
     @DeleteMapping("/commandes/{id}")

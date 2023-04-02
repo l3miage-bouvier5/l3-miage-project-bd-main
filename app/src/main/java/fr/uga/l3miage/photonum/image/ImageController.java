@@ -76,8 +76,9 @@ public class ImageController {
     public ImageDTO updateImage(@PathVariable("id") @NotNull Long id, @RequestBody @Valid ImageDTO imageDTO) {
         try {
             Image image = imageMapper.dtoToEntity(imageDTO);
-            if (image.getEstPartage())
-            imageService.update(image);
+            if (image.getEstPartage()) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "L'image partagée ne peut pas être modifiée");
+            }else{ imageService.update(image); }
             return imageMapper.entityToDTO(image);
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, null, e);
