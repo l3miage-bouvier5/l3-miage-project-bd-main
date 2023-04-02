@@ -11,5 +11,3 @@ public interface CatalogueService extends BaseService<Catalogue, Long> {
     void delete(Long id) throws EntityNotFoundException;
 
 }
-
-}
