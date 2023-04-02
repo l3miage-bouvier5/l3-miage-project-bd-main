@@ -69,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nomRue\" : \"jeanmachin\",\r\n    \"codePostal\" : 38000,\r\n    \"numDePorte\" : 21,\r\n    \"ville\" : \"Grenoble\"\r\n}",
+					"raw": "{\r\n    \"nomRue\" : \"{{$randomStreetName}}\",\r\n    \"codePostal\" : 38000,\r\n    \"numDePorte\" : {{$randomInt}},\r\n    \"ville\" : \"{{$randomCity}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -99,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nomRue\" : \"Rue de la paix\",\r\n    \"codePostal\" : 75000,\r\n    \"numDePorte\" : 12,\r\n    \"ville\" : \"Paris\"\r\n}",
+					"raw": "{\r\n    \"nomRue\" : \"{{$randomStreetName}}\",\r\n    \"codePostal\" : 38000,\r\n    \"numDePorte\" : {{$randomInt}},\r\n    \"ville\" : \"{{$randomCity}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -128,15 +128,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/api/v1/adresses/{{adresseId}}",
+					"raw": "{{baseUrl}}/api/v1/clients/{{clientId}}/adresses",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
 						"v1",
-						"adresses",
-						"{{adresseId}}"
+						"clients",
+						"{{clientId}}",
+						"adresses"
 					]
 				}
 			},
