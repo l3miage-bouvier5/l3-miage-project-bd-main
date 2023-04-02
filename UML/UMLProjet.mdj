@@ -4162,7 +4162,7 @@
 											"top": 402,
 											"width": 128.857421875,
 											"height": 13,
-											"text": "partage: boolean",
+											"text": "estPartage: boolean",
 											"horizontalAlignment": 0
 										}
 									],
@@ -9838,7 +9838,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGG2+cQEtghhKo="
 							},
-							"name": "partage",
+							"name": "estPartage",
 							"type": "boolean"
 						}
 					]

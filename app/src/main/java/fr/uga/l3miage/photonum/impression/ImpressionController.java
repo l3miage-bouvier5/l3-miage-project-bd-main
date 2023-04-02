@@ -60,6 +60,7 @@ public class ImpressionController {
     public ImpressionDTO newImpression(@PathVariable("clientId") @NotNull Long clientId,@RequestBody @Valid ImpressionDTO impression) throws EntityNotFoundException {
         var saved = imprService.save(clientId,imprMapper.dtoToEntity(impression));
         return imprMapper.entityToDTO(saved);
+        
     }
 
     @PutMapping(value = "/impressions/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
